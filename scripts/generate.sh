@@ -64,9 +64,9 @@ echo "[I] Running go tests: $(go version)"
 go test $GODIRS
 
 echo "[I] Cleaning up..."
-rm -f .travis.yml
-rm -f git_push.sh
-rm -rf .openapi-generator
-rm -rf api
+rm -f $LIB_DIR/.travis.yml
+rm -f $LIB_DIR/git_push.sh
+rm -rf $LIB_DIR/.openapi-generator
+rm -rf $LIB_DIR/api
 
 echo "[I] DONE"
