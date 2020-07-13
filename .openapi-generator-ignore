@@ -25,6 +25,8 @@
 # Prolicht custom stuff
 .gitignore
 api_authtoken.go
+.travis.yml
+README.md
 
 # Custom Polymorphism
 model_i_element_dto_polymorphism.go

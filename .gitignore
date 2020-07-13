@@ -35,7 +35,6 @@ _testmain.go
 .idea/
 *.iws
 out/
-.travis.yml
 git_push.sh
 .openapi-generator/
 api/

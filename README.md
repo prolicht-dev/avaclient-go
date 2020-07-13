@@ -1,4 +1,5 @@
 # Go API client for avaclient
+[![Build Status](https://travis-ci.org/prolicht-dev/avaclient-go.svg?branch=master)](https://travis-ci.org/prolicht-dev/avaclient-go)
 
 AVACloud API specification
 
