@@ -46,7 +46,7 @@ sed -i 's/Elements \[\]IElementDto/Elements \[\]IElementDtoHolder/g' ${LIB_DIR}m
 sed -i 's/Elements \[\]IElementDto/Elements \[\]IElementDtoHolder/g' ${LIB_DIR}model_service_specification_group_dto_all_of.go
 
 echo "[I] Applying fix for content-type check"
-sed -i 's/vnd\\.//g' ${LIB_DIR}client.go
+sed -i 's/vnd\\.\[\^;\]\+/(?:vnd\\.[^;]+|problem)/g' ${LIB_DIR}client.go
 
 ## GO FMT
 GODIRS=$(go list $LIB_DIR/... | grep -v /vendor/)
