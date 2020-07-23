@@ -45,6 +45,9 @@ sed -i 's/Elements \[\]IElementDto/Elements \[\]IElementDtoHolder/g' ${LIB_DIR}m
 sed -i 's/Elements \[\]IElementDto/Elements \[\]IElementDtoHolder/g' ${LIB_DIR}model_service_specification_group_dto.go
 sed -i 's/Elements \[\]IElementDto/Elements \[\]IElementDtoHolder/g' ${LIB_DIR}model_service_specification_group_dto_all_of.go
 
+echo "[I] Applying fix for content-type check"
+sed -i 's/vnd\\.//g' ${LIB_DIR}client.go
+
 ## GO FMT
 GODIRS=$(go list $LIB_DIR/... | grep -v /vendor/)
 GOFILES=$(find $LIB_DIR -type f -name '*.go' -not -path "./vendor/*")
