@@ -32,15 +32,20 @@ type DanglToken struct {
 }
 
 // IsTokenValid checks if the token is expired
-func (st *DanglToken) IsTokenValid() bool {
-	if int32(time.Now().Sub(st.Issued).Seconds()) > (st.ExpiresIn - 120) { // 120 = tolerance time in seconds
+func (dt *DanglToken) IsTokenValid() bool {
+	if dt.Issued.IsZero() {
+		return false // issued date not set
+	}
+
+	if int32(time.Now().Sub(dt.Issued).Seconds()) > (dt.ExpiresIn - 120) { // 120 = tolerance time in seconds
 		return false
 	}
+
 	return true
 }
 
-func (st *DanglToken) String() string {
-	return st.TokenType + " " + st.AccessToken
+func (dt *DanglToken) String() string {
+	return dt.TokenType + " " + dt.AccessToken
 }
 
 func newTokenRequest(tokenURL, clientID, clientSecret, scope string, v url.Values) (*http.Request, error) {
