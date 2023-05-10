@@ -13,28 +13,53 @@ Method | HTTP request | Description
 
 ## RebConversionConvertToAva
 
-> ProjectDto RebConversionConvertToAva(ctx, optional)
+> ProjectDto RebConversionConvertToAva(ctx).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).RebFile(rebFile).Execute()
 
 Converts REB files to Dangl.AVA projects
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    removePlainTextLongTexts := true // bool | If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
+    removeHtmlLongTexts := true // bool | If set to true, html long texts will be removed from the output to reduce response sizes (optional)
+    rebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RebConversionApi.RebConversionConvertToAva(context.Background()).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).RebFile(rebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RebConversionApi.RebConversionConvertToAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebConversionConvertToAva`: ProjectDto
+    fmt.Fprintf(os.Stdout, "Response from `RebConversionApi.RebConversionConvertToAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebConversionConvertToAvaRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***RebConversionConvertToAvaOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a RebConversionConvertToAvaOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **removePlainTextLongTexts** | **optional.Bool**| If set to true, plain text long texts will be removed from the output to reduce response sizes | 
- **removeHtmlLongTexts** | **optional.Bool**| If set to true, html long texts will be removed from the output to reduce response sizes | 
- **rebFile** | **optional.Interface of *os.File****optional.*os.File**| The input file | 
+ **removePlainTextLongTexts** | **bool** | If set to true, plain text long texts will be removed from the output to reduce response sizes | 
+ **removeHtmlLongTexts** | **bool** | If set to true, html long texts will be removed from the output to reduce response sizes | 
+ **rebFile** | ***os.File** | The input file | 
 
 ### Return type
 
@@ -56,29 +81,55 @@ Name | Type | Description  | Notes
 
 ## RebConversionConvertToExcel
 
-> *os.File RebConversionConvertToExcel(ctx, optional)
+> *os.File RebConversionConvertToExcel(ctx).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).RebFile(rebFile).Execute()
 
 Converts REB files to Excel
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    writePrices := true // bool | Defaults to true (optional)
+    writeLongTexts := true // bool | Defaults to true (optional)
+    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files (optional)
+    rebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RebConversionApi.RebConversionConvertToExcel(context.Background()).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).RebFile(rebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RebConversionApi.RebConversionConvertToExcel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebConversionConvertToExcel`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `RebConversionApi.RebConversionConvertToExcel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebConversionConvertToExcelRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***RebConversionConvertToExcelOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a RebConversionConvertToExcelOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **writePrices** | **optional.Bool**| Defaults to true | 
- **writeLongTexts** | **optional.Bool**| Defaults to true | 
- **conversionCulture** | **optional.String**| The culture that should be used for the conversion process, to have localized Excel files | 
- **rebFile** | **optional.Interface of *os.File****optional.*os.File**| The input file | 
+ **writePrices** | **bool** | Defaults to true | 
+ **writeLongTexts** | **bool** | Defaults to true | 
+ **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files | 
+ **rebFile** | ***os.File** | The input file | 
 
 ### Return type
 
@@ -100,28 +151,63 @@ Name | Type | Description  | Notes
 
 ## RebConversionConvertToGaeb
 
-> *os.File RebConversionConvertToGaeb(ctx, optional)
+> *os.File RebConversionConvertToGaeb(ctx).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).RebFile(rebFile).Execute()
 
 Converts REB files to GAEB files
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    destinationGaebType := "destinationGaebType_example" // string | Defaults to GAEB XML V3.2 (optional)
+    targetExchangePhaseTransform := "targetExchangePhaseTransform_example" // string | Defaults to none, meaning no transformation will be done (optional)
+    enforceStrictOfferPhaseLongTextOutput := true // bool | Defaults to false. If this is enabled, exported long texts to GAEB XML that use text additions will be strictly schema compliant. If this is not enabled, any text that is marked to contain a text addition is exported in full to ensure that incorrectly used text additions are still preserved in the export. (optional)
+    exportQuantityDetermination := true // bool | Defaults to false. If this is enabled, quantities are exported in detail in GAEB XML targets via the 'QtyDeterm' (Quantity Determination, or Quantity Take Off) fields. To control this, you can set custom quantity calculations in the 'QuantityComponents' property of positions. Please see the entry for 'Quantity Determination' in the Dangl.AVA HowTo documentation section. Please be advised that enabling this might export data that was not intended to be exported, like internal quantity calculation details, depending on what data you put in the 'QuantityComponents' property. (optional)
+    removeUnprintableCharactersFromTexts := true // bool | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. (optional)
+    forceIncludeDescriptions := true // bool | If this is enabled, all description elements like texts and execution descriptions will be output to the result. This is mostly only applicable to GAEB exports to phase 84 - Offer, which does typically not include descriptions. (optional)
+    treatNullItemNumberSchemaAsInvalid := true // bool | When exporting to GAEB, an item number schema is usually required. AVACloud will try to fix invalid item number schemas. With this setting, you can also tell AVACloud to treat a null value as invalid. Otherwise, null schemas will simply be ignored and not lead to any schema being generated. It is recommended to enable this option, but it is disabled by default for compatibility reasons. (optional)
+    rebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RebConversionApi.RebConversionConvertToGaeb(context.Background()).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).RebFile(rebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RebConversionApi.RebConversionConvertToGaeb``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebConversionConvertToGaeb`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `RebConversionApi.RebConversionConvertToGaeb`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebConversionConvertToGaebRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***RebConversionConvertToGaebOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a RebConversionConvertToGaebOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **destinationGaebType** | **optional.String**| Defaults to GAEB XML V3.2 | 
- **targetExchangePhaseTransform** | **optional.String**| Defaults to none, meaning no transformation will be done | 
- **rebFile** | **optional.Interface of *os.File****optional.*os.File**| The input file | 
+ **destinationGaebType** | **string** | Defaults to GAEB XML V3.2 | 
+ **targetExchangePhaseTransform** | **string** | Defaults to none, meaning no transformation will be done | 
+ **enforceStrictOfferPhaseLongTextOutput** | **bool** | Defaults to false. If this is enabled, exported long texts to GAEB XML that use text additions will be strictly schema compliant. If this is not enabled, any text that is marked to contain a text addition is exported in full to ensure that incorrectly used text additions are still preserved in the export. | 
+ **exportQuantityDetermination** | **bool** | Defaults to false. If this is enabled, quantities are exported in detail in GAEB XML targets via the &#39;QtyDeterm&#39; (Quantity Determination, or Quantity Take Off) fields. To control this, you can set custom quantity calculations in the &#39;QuantityComponents&#39; property of positions. Please see the entry for &#39;Quantity Determination&#39; in the Dangl.AVA HowTo documentation section. Please be advised that enabling this might export data that was not intended to be exported, like internal quantity calculation details, depending on what data you put in the &#39;QuantityComponents&#39; property. | 
+ **removeUnprintableCharactersFromTexts** | **bool** | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. | 
+ **forceIncludeDescriptions** | **bool** | If this is enabled, all description elements like texts and execution descriptions will be output to the result. This is mostly only applicable to GAEB exports to phase 84 - Offer, which does typically not include descriptions. | 
+ **treatNullItemNumberSchemaAsInvalid** | **bool** | When exporting to GAEB, an item number schema is usually required. AVACloud will try to fix invalid item number schemas. With this setting, you can also tell AVACloud to treat a null value as invalid. Otherwise, null schemas will simply be ignored and not lead to any schema being generated. It is recommended to enable this option, but it is disabled by default for compatibility reasons. | 
+ **rebFile** | ***os.File** | The input file | 
 
 ### Return type
 
@@ -143,28 +229,57 @@ Name | Type | Description  | Notes
 
 ## RebConversionConvertToOenorm
 
-> *os.File RebConversionConvertToOenorm(ctx, optional)
+> *os.File RebConversionConvertToOenorm(ctx).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).RebFile(rebFile).Execute()
 
 Converts REB files to Oenorm
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    destinationOenormType := "destinationOenormType_example" // string | Defaults to Lv2015 (optional)
+    tryRepairProjectStructure := true // bool | Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
+    skipTryEnforceSchemaCompliantXmlOutput := true // bool | If this option is enabled, AVACloud will not attempt to force a schema-compliant Xml output for ÖNorm targets that are Xml based. By default, AVACloud will try to add required fields, even if no data is present, with sensible defaults. This behavior can be disabled with this option. (optional)
+    removeUnprintableCharactersFromTexts := true // bool | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. (optional)
+    rebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RebConversionApi.RebConversionConvertToOenorm(context.Background()).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).RebFile(rebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RebConversionApi.RebConversionConvertToOenorm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebConversionConvertToOenorm`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `RebConversionApi.RebConversionConvertToOenorm`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebConversionConvertToOenormRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***RebConversionConvertToOenormOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a RebConversionConvertToOenormOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **destinationOenormType** | **optional.String**| Defaults to Lv2015 | 
- **tryRepairProjectStructure** | **optional.Bool**| Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target | 
- **rebFile** | **optional.Interface of *os.File****optional.*os.File**| The input file | 
+ **destinationOenormType** | **string** | Defaults to Lv2015 | 
+ **tryRepairProjectStructure** | **bool** | Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target | 
+ **skipTryEnforceSchemaCompliantXmlOutput** | **bool** | If this option is enabled, AVACloud will not attempt to force a schema-compliant Xml output for ÖNorm targets that are Xml based. By default, AVACloud will try to add required fields, even if no data is present, with sensible defaults. This behavior can be disabled with this option. | 
+ **removeUnprintableCharactersFromTexts** | **bool** | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. | 
+ **rebFile** | ***os.File** | The input file | 
 
 ### Return type
 

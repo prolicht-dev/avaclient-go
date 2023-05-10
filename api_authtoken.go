@@ -1,122 +1,56 @@
+/*
+AVACloud Oauth Authentication Helper.
+*/
+
 package avaclient
 
 import (
 	"context"
-	"encoding/json"
-	"errors"
-	"fmt"
-	"net/http"
-	"net/url"
-	"strings"
-	"time"
+
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/clientcredentials"
 )
 
-// DanglToken represents a DanglIT auth token
-type DanglToken struct {
-	// AccessToken is the token that authorizes and authenticates
-	// the requests.
-	AccessToken string `json:"access_token"`
-
-	// TokenType is the type of token.
-	// The Type method returns either this or "Bearer", the default.
-	TokenType string `json:"token_type"`
-
-	// ExpiresIn is the optional expiration time in seconds of the access token.
-	ExpiresIn int32 `json:"expires_in"`
-
-	// Issued time
-	Issued time.Time
-
-	// Scope
-	Scope string `json:"scope"`
+type OauthAuthenticator struct {
+	clientcredentials.Config
 }
 
-// IsTokenValid checks if the token is expired
-func (dt *DanglToken) IsTokenValid() bool {
-	if dt.Issued.IsZero() {
-		return false // issued date not set
+func newOauthAuthenticator(clientId, clientSecret, tokenUrl string, scopes []string) OauthAuthenticator {
+	return OauthAuthenticator{
+		clientcredentials.Config{
+			ClientID:       clientId,
+			ClientSecret:   clientSecret,
+			TokenURL:       tokenUrl,
+			Scopes:         scopes,
+			EndpointParams: nil,
+			AuthStyle:      oauth2.AuthStyleAutoDetect,
+		},
 	}
-
-	if int32(time.Now().Sub(dt.Issued).Seconds()) > (dt.ExpiresIn - 120) { // 120 = tolerance time in seconds
-		return false
-	}
-
-	return true
 }
 
-func (dt *DanglToken) String() string {
-	return dt.TokenType + " " + dt.AccessToken
-}
+// NewCustomToken  retrieves an OAuth token-source from the auth endpoint
+func NewCustomToken(clientId, clientSecret, tokenUrl string, scopes []string) (oauth2.TokenSource, error) {
+	oauthConfig := newOauthAuthenticator(clientId, clientSecret, tokenUrl, scopes)
 
-func newTokenRequest(tokenURL, clientID, clientSecret, scope string, v url.Values) (*http.Request, error) {
-	v.Set("grant_type", "client_credentials")
-	if clientID != "" {
-		v.Set("client_id", clientID)
-	}
-	if clientSecret != "" {
-		v.Set("client_secret", clientSecret)
-	}
-	if scope != "" {
-		v.Set("scope", scope)
-	}
+	source := oauthConfig.TokenSource(context.Background())
 
-	req, err := http.NewRequest("POST", tokenURL, strings.NewReader(v.Encode()))
+	// request a token
+	_, err := source.Token()
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Accept", "application/json")
 
-	return req, nil
+	return source, nil
 }
 
-// NewCustomToken  retrieves a token from the auth endpoint
-func NewCustomToken(clientID, clientSecret, scope, tokenURL string, v url.Values) (*DanglToken, error) {
-	req, err := newTokenRequest(tokenURL, clientID, clientSecret, scope, v)
-	if err != nil {
-		return nil, err
-	}
-	token, err := parseJSONToken(req)
-
-	return token, err
-}
-
-// NewToken  retrieves a token from the default auth endpoint
-func NewToken(clientID, clientSecret string) (*DanglToken, error) {
+// NewToken  retrieves an OAuth token-source from the default auth endpoint
+func NewToken(clientID, clientSecret string) (oauth2.TokenSource, error) {
 	token, err := NewCustomToken(
 		clientID,
 		clientSecret,
-		"avacloud",
 		"https://identity.dangl-it.com/connect/token",
-		url.Values{},
+		[]string{"avacloud"},
 	)
 
 	return token, err
-}
-
-func parseJSONToken(req *http.Request) (*DanglToken, error) {
-	ctx, _ := context.WithTimeout(context.Background(), 2000*time.Millisecond)
-	r, err := http.DefaultClient.Do(req.WithContext(ctx))
-	if err != nil {
-		return nil, err
-	}
-	defer r.Body.Close()
-
-	if code := r.StatusCode; code < 200 || code > 299 {
-		return nil, fmt.Errorf("api_authtoken: invalid response code: %v", code)
-	}
-
-	var token DanglToken
-	err = json.NewDecoder(r.Body).Decode(&token)
-	token.Issued = time.Now()
-
-	if err != nil {
-		return nil, err
-	}
-
-	if token.AccessToken == "" {
-		return nil, errors.New("api_authtoken: server response missing access_token")
-	}
-
-	return &token, nil
 }

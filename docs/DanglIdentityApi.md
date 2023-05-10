@@ -15,17 +15,49 @@ Method | HTTP request | Description
 
 ## DanglIdentityLoginAndReturnToken
 
-> TokenResponseGet DanglIdentityLoginAndReturnToken(ctx, model)
+> TokenResponseGet DanglIdentityLoginAndReturnToken(ctx).Model(model).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    model := *openapiclient.NewTokenLoginPost("Identifier_example", "Password_example") // TokenLoginPost | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DanglIdentityApi.DanglIdentityLoginAndReturnToken(context.Background()).Model(model).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityLoginAndReturnToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DanglIdentityLoginAndReturnToken`: TokenResponseGet
+    fmt.Fprintf(os.Stdout, "Response from `DanglIdentityApi.DanglIdentityLoginAndReturnToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityLoginAndReturnTokenRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**model** | [**TokenLoginPost**](TokenLoginPost.md)|  | 
+ **model** | [**TokenLoginPost**](TokenLoginPost.md) |  | 
 
 ### Return type
 
@@ -37,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -47,28 +79,49 @@ Name | Type | Description  | Notes
 
 ## DanglIdentityLoginWithCookie
 
-> DanglIdentityLoginWithCookie(ctx, model, optional)
+> DanglIdentityLoginWithCookie(ctx).Model(model).RedirectUrl(redirectUrl).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    model := *openapiclient.NewLoginPost("Identifier_example", "Password_example", false) // LoginPost | 
+    redirectUrl := "redirectUrl_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DanglIdentityApi.DanglIdentityLoginWithCookie(context.Background()).Model(model).RedirectUrl(redirectUrl).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityLoginWithCookie``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityLoginWithCookieRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**model** | [**LoginPost**](LoginPost.md)|  | 
- **optional** | ***DanglIdentityLoginWithCookieOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DanglIdentityLoginWithCookieOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **redirectUrl** | **optional.String**|  | 
+ **model** | [**LoginPost**](LoginPost.md) |  | 
+ **redirectUrl** | **string** |  | 
 
 ### Return type
 
@@ -80,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -90,17 +143,49 @@ Name | Type | Description  | Notes
 
 ## DanglIdentityRefreshToken
 
-> TokenResponseGet DanglIdentityRefreshToken(ctx, model)
+> TokenResponseGet DanglIdentityRefreshToken(ctx).Model(model).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    model := *openapiclient.NewTokenRefreshPost("RefreshToken_example") // TokenRefreshPost | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DanglIdentityApi.DanglIdentityRefreshToken(context.Background()).Model(model).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityRefreshToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DanglIdentityRefreshToken`: TokenResponseGet
+    fmt.Fprintf(os.Stdout, "Response from `DanglIdentityApi.DanglIdentityRefreshToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityRefreshTokenRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**model** | [**TokenRefreshPost**](TokenRefreshPost.md)|  | 
+ **model** | [**TokenRefreshPost**](TokenRefreshPost.md) |  | 
 
 ### Return type
 
@@ -112,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -122,17 +207,47 @@ Name | Type | Description  | Notes
 
 ## DanglIdentityRegister
 
-> DanglIdentityRegister(ctx, registerModel)
+> DanglIdentityRegister(ctx).RegisterModel(registerModel).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    registerModel := *openapiclient.NewRegisterPost("Username_example", "Email_example", "Password_example") // RegisterPost | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DanglIdentityApi.DanglIdentityRegister(context.Background()).RegisterModel(registerModel).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityRegister``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityRegisterRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**registerModel** | [**RegisterPost**](RegisterPost.md)|  | 
+ **registerModel** | [**RegisterPost**](RegisterPost.md) |  | 
 
 ### Return type
 
@@ -144,7 +259,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: text/plain, application/json, text/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -154,17 +269,47 @@ Name | Type | Description  | Notes
 
 ## DanglIdentityRequestPasswordReset
 
-> DanglIdentityRequestPasswordReset(ctx, forgotPasswordModel)
+> DanglIdentityRequestPasswordReset(ctx).ForgotPasswordModel(forgotPasswordModel).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    forgotPasswordModel := *openapiclient.NewForgotPasswordPost("Identifier_example") // ForgotPasswordPost | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DanglIdentityApi.DanglIdentityRequestPasswordReset(context.Background()).ForgotPasswordModel(forgotPasswordModel).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityRequestPasswordReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityRequestPasswordResetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**forgotPasswordModel** | [**ForgotPasswordPost**](ForgotPasswordPost.md)|  | 
+ **forgotPasswordModel** | [**ForgotPasswordPost**](ForgotPasswordPost.md) |  | 
 
 ### Return type
 
@@ -176,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -186,13 +331,42 @@ Name | Type | Description  | Notes
 
 ## DanglIdentitySignOutWithSignInManager
 
-> DanglIdentitySignOutWithSignInManager(ctx, )
+> DanglIdentitySignOutWithSignInManager(ctx).Execute()
 
 
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DanglIdentityApi.DanglIdentitySignOutWithSignInManager(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentitySignOutWithSignInManager``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentitySignOutWithSignInManagerRequest struct via the builder pattern
+
 
 ### Return type
 

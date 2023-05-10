@@ -10,13 +10,44 @@ Method | HTTP request | Description
 
 ## StatusGetStatus
 
-> GetStatus StatusGetStatus(ctx, )
+> GetStatus StatusGetStatus(ctx).Execute()
 
 Reports the health status of the AVACloud API
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StatusApi.StatusGetStatus(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StatusApi.StatusGetStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `StatusGetStatus`: GetStatus
+    fmt.Fprintf(os.Stdout, "Response from `StatusApi.StatusGetStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStatusGetStatusRequest struct via the builder pattern
+
 
 ### Return type
 
