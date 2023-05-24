@@ -35,8 +35,12 @@ func main() {
 	gaeb, _, err := api.AvaConversionApi.AvaConversionConvertToGaeb(authCtx).
 		AvaProject(avaclient.ProjectDto{
 			ServiceSpecifications: []avaclient.ServiceSpecificationDto{{
-				Elements: []avaclient.IElementDto{{
-					ElementTypeDiscriminator: "Position",
+				Elements: []avaclient.IElementDtoHolder{{
+					Holder: avaclient.PositionDto{
+						IElementDto: avaclient.IElementDto{
+							ElementTypeDiscriminator: "Position",
+						},
+					},
 				}},
 			}},
 			GaebXmlId: nil,
