@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Identifier** | **string** |  | 
 **PreferredLanguages** | Pointer to **[]string** |  | [optional] 
+**ServiceLoginRedirectUri** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -70,6 +71,31 @@ SetPreferredLanguages sets PreferredLanguages field to given value.
 `func (o *ForgotPasswordPost) HasPreferredLanguages() bool`
 
 HasPreferredLanguages returns a boolean if a field has been set.
+
+### GetServiceLoginRedirectUri
+
+`func (o *ForgotPasswordPost) GetServiceLoginRedirectUri() string`
+
+GetServiceLoginRedirectUri returns the ServiceLoginRedirectUri field if non-nil, zero value otherwise.
+
+### GetServiceLoginRedirectUriOk
+
+`func (o *ForgotPasswordPost) GetServiceLoginRedirectUriOk() (*string, bool)`
+
+GetServiceLoginRedirectUriOk returns a tuple with the ServiceLoginRedirectUri field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceLoginRedirectUri
+
+`func (o *ForgotPasswordPost) SetServiceLoginRedirectUri(v string)`
+
+SetServiceLoginRedirectUri sets ServiceLoginRedirectUri field to given value.
+
+### HasServiceLoginRedirectUri
+
+`func (o *ForgotPasswordPost) HasServiceLoginRedirectUri() bool`
+
+HasServiceLoginRedirectUri returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
