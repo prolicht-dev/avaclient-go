@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ContainsDuplicateItemNumbers** | **bool** | Indicates if there are child IElements that have conflicting, duplicated ItemNumbers or if any child ElementContainerBase elements themselves contain duplicate ItemNumber s. Will always indicate false when told to ignore duplicate item numbers. | [readonly] 
 **ContainsDuplicateElementIds** | **bool** | Indicates if there are child IElements that have conflicting, duplicated Ids or if any child ElementContainerBase elements themselves contain duplicate Id s. Will always indicate false when told to ignore duplicate item numbers. | [readonly] 
 **IgnoreDuplicateItemNumbers** | **bool** | Indicate if duplicated ItemNumbers within child elements are to be ignored. Will not perform checks for duplicates if yes. | 
+**IgnoreProjectCataloguePropagation** | **bool** | If this is set to true, the ProjectCatalogues property will not be propagated to child elements. This is useful in mapping scenarios, where you want to disable propagation for multiple changes, and only enable it once you have mapped all properties | 
 **IgnoreDuplicateElementIds** | **bool** | Indicate if duplicated Ids within child elements are to be ignored. Will not perform checks for duplicates if yes. | 
 **TotalPriceGrossByTaxRate** | Pointer to [**[]GrossPriceComponentDto**](GrossPriceComponentDto.md) | Price composition by tax rate. | [optional] 
 **IgnoreChildPriceUpdates** | **bool** | Internally used to indicate that a propagation is currently done, this is done to not recalculate every single result from a lot of changes when it is sufficient to calculate the total price at once. | 
@@ -59,7 +60,7 @@ Name | Type | Description | Notes
 
 ### NewServiceSpecificationDto
 
-`func NewServiceSpecificationDto(id string, projectHourlyWage float32, projectTaxRate float32, containsDuplicateItemNumbers bool, containsDuplicateElementIds bool, ignoreDuplicateItemNumbers bool, ignoreDuplicateElementIds bool, ignoreChildPriceUpdates bool, deductedPrice float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, priceType PriceTypeDto, exchangePhase ExchangePhaseDto, origin OriginDto, warrantyBondPercentage float32, executionGuaranteePercentage float32, ) *ServiceSpecificationDto`
+`func NewServiceSpecificationDto(id string, projectHourlyWage float32, projectTaxRate float32, containsDuplicateItemNumbers bool, containsDuplicateElementIds bool, ignoreDuplicateItemNumbers bool, ignoreProjectCataloguePropagation bool, ignoreDuplicateElementIds bool, ignoreChildPriceUpdates bool, deductedPrice float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, priceType PriceTypeDto, exchangePhase ExchangePhaseDto, origin OriginDto, warrantyBondPercentage float32, executionGuaranteePercentage float32, ) *ServiceSpecificationDto`
 
 NewServiceSpecificationDto instantiates a new ServiceSpecificationDto object
 This constructor will assign default values to properties that have it defined,
@@ -292,6 +293,26 @@ and a boolean to check if the value has been set.
 `func (o *ServiceSpecificationDto) SetIgnoreDuplicateItemNumbers(v bool)`
 
 SetIgnoreDuplicateItemNumbers sets IgnoreDuplicateItemNumbers field to given value.
+
+
+### GetIgnoreProjectCataloguePropagation
+
+`func (o *ServiceSpecificationDto) GetIgnoreProjectCataloguePropagation() bool`
+
+GetIgnoreProjectCataloguePropagation returns the IgnoreProjectCataloguePropagation field if non-nil, zero value otherwise.
+
+### GetIgnoreProjectCataloguePropagationOk
+
+`func (o *ServiceSpecificationDto) GetIgnoreProjectCataloguePropagationOk() (*bool, bool)`
+
+GetIgnoreProjectCataloguePropagationOk returns a tuple with the IgnoreProjectCataloguePropagation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIgnoreProjectCataloguePropagation
+
+`func (o *ServiceSpecificationDto) SetIgnoreProjectCataloguePropagation(v bool)`
+
+SetIgnoreProjectCataloguePropagation sets IgnoreProjectCataloguePropagation field to given value.
 
 
 ### GetIgnoreDuplicateElementIds

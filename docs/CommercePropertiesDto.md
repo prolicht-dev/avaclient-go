@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CatalogueArticleNumber** | Pointer to **string** | This maps to CatalogArtNo in GAEB XML and represents a key that maps to an entry in a specific catalogue. The referenced catalogue is usually a customer specific one, not related to CatalogueReferences. | [optional] 
 **PriceBasis** | Pointer to **float32** | This optional property can be used to indicate the basis for prices for a single position. Price basis means that the price is given per unit of the basis, e.g. per a pack of five when this property is set to &#39;5&#39;. | [optional] 
 **SubPositionIdentifier** | Pointer to **string** | This optional property can be used to indicate a sub position identifier specific for the commerce exchange | [optional] 
+**CustomerBaseItemNumber** | Pointer to **string** | In a commerce exchange, this property is usually used to reference the base item number of an underlying phase 83 exchange file | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetSubPositionIdentifier sets SubPositionIdentifier field to given value.
 `func (o *CommercePropertiesDto) HasSubPositionIdentifier() bool`
 
 HasSubPositionIdentifier returns a boolean if a field has been set.
+
+### GetCustomerBaseItemNumber
+
+`func (o *CommercePropertiesDto) GetCustomerBaseItemNumber() string`
+
+GetCustomerBaseItemNumber returns the CustomerBaseItemNumber field if non-nil, zero value otherwise.
+
+### GetCustomerBaseItemNumberOk
+
+`func (o *CommercePropertiesDto) GetCustomerBaseItemNumberOk() (*string, bool)`
+
+GetCustomerBaseItemNumberOk returns a tuple with the CustomerBaseItemNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerBaseItemNumber
+
+`func (o *CommercePropertiesDto) SetCustomerBaseItemNumber(v string)`
+
+SetCustomerBaseItemNumber sets CustomerBaseItemNumber field to given value.
+
+### HasCustomerBaseItemNumber
+
+`func (o *CommercePropertiesDto) HasCustomerBaseItemNumber() bool`
+
+HasCustomerBaseItemNumber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

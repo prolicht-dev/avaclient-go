@@ -58,12 +58,14 @@ Name | Type | Description | Notes
 **GaebComplementingType** | [**PositionComplementingTypeDto**](PositionComplementingTypeDto.md) |  | 
 **HoldOutProperties** | Pointer to [**PositionHoldOutPropertiesDto**](PositionHoldOutPropertiesDto.md) |  | [optional] 
 **EstimatedQuantity** | Pointer to **float32** | This is an informational property, which directly holds a numerical value for an estimated quantity. It is not used for any price calculations. | [optional] 
+**PriceCatalogueData** | Pointer to [**PriceCatalogueDataDto**](PriceCatalogueDataDto.md) |  | [optional] 
+**IgnoreProjectCataloguePropagation** | **bool** | If this is set to true, the ProjectCatalogues property will not be propagated to child elements. This is useful in mapping scenarios, where you want to disable propagation for multiple changes, and only enable it once you have mapped all properties. | 
 
 ## Methods
 
 ### NewPositionDto
 
-`func NewPositionDto(unitPrice float32, quantity float32, isComplementingPosition bool, comissionStatus ComissionStatusDto, complemented bool, amountToBeEnteredByBidder bool, priceCompositionRequired bool, useDifferentTaxRate bool, taxRate float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, deductedPrice float32, positionType PositionTypeDto, priceType PriceTypeDto, serviceType ServiceTypeDto, additionType AdditionTypeDto, isLumpSum bool, notOffered bool, hierarchyLevel int32, hasBidderCommentInHtmlLongText bool, gaebComplementingType PositionComplementingTypeDto, ) *PositionDto`
+`func NewPositionDto(unitPrice float32, quantity float32, isComplementingPosition bool, comissionStatus ComissionStatusDto, complemented bool, amountToBeEnteredByBidder bool, priceCompositionRequired bool, useDifferentTaxRate bool, taxRate float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, deductedPrice float32, positionType PositionTypeDto, priceType PriceTypeDto, serviceType ServiceTypeDto, additionType AdditionTypeDto, isLumpSum bool, notOffered bool, hierarchyLevel int32, hasBidderCommentInHtmlLongText bool, gaebComplementingType PositionComplementingTypeDto, ignoreProjectCataloguePropagation bool, ) *PositionDto`
 
 NewPositionDto instantiates a new PositionDto object
 This constructor will assign default values to properties that have it defined,
@@ -1312,6 +1314,51 @@ SetEstimatedQuantity sets EstimatedQuantity field to given value.
 `func (o *PositionDto) HasEstimatedQuantity() bool`
 
 HasEstimatedQuantity returns a boolean if a field has been set.
+
+### GetPriceCatalogueData
+
+`func (o *PositionDto) GetPriceCatalogueData() PriceCatalogueDataDto`
+
+GetPriceCatalogueData returns the PriceCatalogueData field if non-nil, zero value otherwise.
+
+### GetPriceCatalogueDataOk
+
+`func (o *PositionDto) GetPriceCatalogueDataOk() (*PriceCatalogueDataDto, bool)`
+
+GetPriceCatalogueDataOk returns a tuple with the PriceCatalogueData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceCatalogueData
+
+`func (o *PositionDto) SetPriceCatalogueData(v PriceCatalogueDataDto)`
+
+SetPriceCatalogueData sets PriceCatalogueData field to given value.
+
+### HasPriceCatalogueData
+
+`func (o *PositionDto) HasPriceCatalogueData() bool`
+
+HasPriceCatalogueData returns a boolean if a field has been set.
+
+### GetIgnoreProjectCataloguePropagation
+
+`func (o *PositionDto) GetIgnoreProjectCataloguePropagation() bool`
+
+GetIgnoreProjectCataloguePropagation returns the IgnoreProjectCataloguePropagation field if non-nil, zero value otherwise.
+
+### GetIgnoreProjectCataloguePropagationOk
+
+`func (o *PositionDto) GetIgnoreProjectCataloguePropagationOk() (*bool, bool)`
+
+GetIgnoreProjectCataloguePropagationOk returns a tuple with the IgnoreProjectCataloguePropagation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIgnoreProjectCataloguePropagation
+
+`func (o *PositionDto) SetIgnoreProjectCataloguePropagation(v bool)`
+
+SetIgnoreProjectCataloguePropagation sets IgnoreProjectCataloguePropagation field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name that is given for this catalogue. | [optional] 
 **Description** | Pointer to **string** | Additional information about this catalogue. | [optional] 
 **CatalogueType** | [**CatalogueTypeDto**](CatalogueTypeDto.md) |  | 
+**CatalogueTypeDetail** | Pointer to **string** | This property may hold additional information about the catalogue type. It is currently only used in GAEB XML exchange to carry detailed information about a catalogue type, but it&#39;s otherwise just a free text field. | [optional] 
 
 ## Methods
 
@@ -143,6 +144,31 @@ and a boolean to check if the value has been set.
 
 SetCatalogueType sets CatalogueType field to given value.
 
+
+### GetCatalogueTypeDetail
+
+`func (o *CatalogueDto) GetCatalogueTypeDetail() string`
+
+GetCatalogueTypeDetail returns the CatalogueTypeDetail field if non-nil, zero value otherwise.
+
+### GetCatalogueTypeDetailOk
+
+`func (o *CatalogueDto) GetCatalogueTypeDetailOk() (*string, bool)`
+
+GetCatalogueTypeDetailOk returns a tuple with the CatalogueTypeDetail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCatalogueTypeDetail
+
+`func (o *CatalogueDto) SetCatalogueTypeDetail(v string)`
+
+SetCatalogueTypeDetail sets CatalogueTypeDetail field to given value.
+
+### HasCatalogueTypeDetail
+
+`func (o *CatalogueDto) HasCatalogueTypeDetail() bool`
+
+HasCatalogueTypeDetail returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -51,6 +51,7 @@ func TestMarshall(t *testing.T) {
           "gaebComplementingType": "",
           "hierarchyLevel": 0,
           "id": "",
+          "ignoreProjectCataloguePropagation": false,
           "isComplementingPosition": false,
           "isLumpSum": false,
           "notOffered": false,
@@ -71,6 +72,7 @@ func TestMarshall(t *testing.T) {
       "ignoreChildPriceUpdates": false,
       "ignoreDuplicateElementIds": false,
       "ignoreDuplicateItemNumbers": false,
+      "ignoreProjectCataloguePropagation": false,
       "origin": "",
       "priceType": "",
       "projectTaxRate": 0,
@@ -78,7 +80,8 @@ func TestMarshall(t *testing.T) {
     }
   ]
 }`
-	equals(t, expJson, string(jsonBytes))
+	got := string(jsonBytes)
+	equals(t, expJson, got)
 }
 
 func TestUnMarshall(t *testing.T) {
