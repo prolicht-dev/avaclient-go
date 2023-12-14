@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AslvConversionConvertToAva**](AslvConversionApi.md#AslvConversionConvertToAva) | **Post** /conversion/aslv/ava | Converts Aslv files to Dangl.AVA projects
 [**AslvConversionConvertToExcel**](AslvConversionApi.md#AslvConversionConvertToExcel) | **Post** /conversion/aslv/excel | Converts Aslv files to Excel
+[**AslvConversionConvertToFlatAva**](AslvConversionApi.md#AslvConversionConvertToFlatAva) | **Post** /conversion/aslv/flat-ava | Converts Aslv files to Dangl.AVA projects
 [**AslvConversionConvertToGaeb**](AslvConversionApi.md#AslvConversionConvertToGaeb) | **Post** /conversion/aslv/gaeb | Converts Aslv files to GAEB files
 [**AslvConversionConvertToOenorm**](AslvConversionApi.md#AslvConversionConvertToOenorm) | **Post** /conversion/aslv/oenorm | Converts Aslv files to Oenorm files
 
@@ -145,6 +146,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AslvConversionConvertToFlatAva
+
+> FlatAvaProject AslvConversionConvertToFlatAva(ctx).AslvFile(aslvFile).Execute()
+
+Converts Aslv files to Dangl.AVA projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    aslvFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AslvConversionApi.AslvConversionConvertToFlatAva(context.Background()).AslvFile(aslvFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AslvConversionApi.AslvConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AslvConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `AslvConversionApi.AslvConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAslvConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aslvFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

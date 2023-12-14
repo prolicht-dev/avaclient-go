@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ExcelConversionConvertToAva**](ExcelConversionApi.md#ExcelConversionConvertToAva) | **Post** /conversion/excel/ava | Converts Excel files to Dangl.AVA projects.
 [**ExcelConversionConvertToExcel**](ExcelConversionApi.md#ExcelConversionConvertToExcel) | **Post** /conversion/excel/excel | Converts Excel files to Excel files. Used, for example, when elements were added in excel to generate or modify a project. The Excel file can then be shared containing the full project with all formattings, formulas and styles applied.
+[**ExcelConversionConvertToFlatAva**](ExcelConversionApi.md#ExcelConversionConvertToFlatAva) | **Post** /conversion/excel/flat-ava | Converts Excel files to Dangl.AVA projects.
 [**ExcelConversionConvertToGaeb**](ExcelConversionApi.md#ExcelConversionConvertToGaeb) | **Post** /conversion/excel/gaeb | Converts Excel files to GAEB files.
 [**ExcelConversionConvertToOenorm**](ExcelConversionApi.md#ExcelConversionConvertToOenorm) | **Post** /conversion/excel/oenorm | Converts Excel files to Oenorm files.
 
@@ -153,6 +154,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExcelConversionConvertToFlatAva
+
+> FlatAvaProject ExcelConversionConvertToFlatAva(ctx).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).ExcelFile(excelFile).Execute()
+
+Converts Excel files to Dangl.AVA projects.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    readNewElements := true // bool | Defaults to false (optional)
+    rebuildItemNumberSchema := true // bool | When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
+    excelFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ExcelConversionApi.ExcelConversionConvertToFlatAva(context.Background()).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).ExcelFile(excelFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ExcelConversionApi.ExcelConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ExcelConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `ExcelConversionApi.ExcelConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExcelConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **readNewElements** | **bool** | Defaults to false | 
+ **rebuildItemNumberSchema** | **bool** | When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. | 
+ **excelFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

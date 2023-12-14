@@ -9,13 +9,14 @@ Name | Type | Description | Notes
 **DeductionFactor** | **float32** | The final, total price will be deducted by this rate. | 
 **FlatSum** | **float32** | This is given when there is only one flat price for the whole service specification. | 
 **TaxRate** | **float32** | Global tax rate for the project. Note that certain elements may have a different, specific tax rate. | 
+**HasUnsetTaxRate** | **bool** | This property indicates if the TaxRate property is actually zero (0) or if it&#39;s just unset. The TaxRate is a non-nullable property, so it can&#39;t be null and therefore a distinction between unset and zero relies on this additional property. When exporting to GAEB, this can be used e.g. to decide whether or not the tax rate should be serialized. This property is automtically set to false when the TaxRate is set to any value, even zero. If the TaxRate is not set to zero, this property will always return false and can not be set to true. | 
 **TradeDiscounts** | Pointer to [**[]TradeDiscountDto**](TradeDiscountDto.md) | Trade discounts for offered in this ServiceSpecification. | [optional] 
 
 ## Methods
 
 ### NewPriceInformationDto
 
-`func NewPriceInformationDto(id string, hourlyWage float32, deductionFactor float32, flatSum float32, taxRate float32, ) *PriceInformationDto`
+`func NewPriceInformationDto(id string, hourlyWage float32, deductionFactor float32, flatSum float32, taxRate float32, hasUnsetTaxRate bool, ) *PriceInformationDto`
 
 NewPriceInformationDto instantiates a new PriceInformationDto object
 This constructor will assign default values to properties that have it defined,
@@ -128,6 +129,26 @@ and a boolean to check if the value has been set.
 `func (o *PriceInformationDto) SetTaxRate(v float32)`
 
 SetTaxRate sets TaxRate field to given value.
+
+
+### GetHasUnsetTaxRate
+
+`func (o *PriceInformationDto) GetHasUnsetTaxRate() bool`
+
+GetHasUnsetTaxRate returns the HasUnsetTaxRate field if non-nil, zero value otherwise.
+
+### GetHasUnsetTaxRateOk
+
+`func (o *PriceInformationDto) GetHasUnsetTaxRateOk() (*bool, bool)`
+
+GetHasUnsetTaxRateOk returns a tuple with the HasUnsetTaxRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasUnsetTaxRate
+
+`func (o *PriceInformationDto) SetHasUnsetTaxRate(v bool)`
+
+SetHasUnsetTaxRate sets HasUnsetTaxRate field to given value.
 
 
 ### GetTradeDiscounts

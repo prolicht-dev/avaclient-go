@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**SiaConversionConvertToAva**](SiaConversionApi.md#SiaConversionConvertToAva) | **Post** /conversion/sia/ava | Converts SIA 451 files to Dangl.AVA projects
 [**SiaConversionConvertToExcel**](SiaConversionApi.md#SiaConversionConvertToExcel) | **Post** /conversion/sia/excel | Converts SIA 451 files to Excel
+[**SiaConversionConvertToFlatAva**](SiaConversionApi.md#SiaConversionConvertToFlatAva) | **Post** /conversion/sia/flat-ava | Converts SIA 451 files to Dangl.AVA projects
 [**SiaConversionConvertToGaeb**](SiaConversionApi.md#SiaConversionConvertToGaeb) | **Post** /conversion/sia/gaeb | Converts SIA 451 files to GAEB files
 [**SiaConversionConvertToOenorm**](SiaConversionApi.md#SiaConversionConvertToOenorm) | **Post** /conversion/sia/oenorm | Converts SIA 451 files to Oenorm files
 
@@ -145,6 +146,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SiaConversionConvertToFlatAva
+
+> FlatAvaProject SiaConversionConvertToFlatAva(ctx).SiaFile(siaFile).Execute()
+
+Converts SIA 451 files to Dangl.AVA projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    siaFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SiaConversionApi.SiaConversionConvertToFlatAva(context.Background()).SiaFile(siaFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SiaConversionApi.SiaConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SiaConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `SiaConversionApi.SiaConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSiaConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **siaFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

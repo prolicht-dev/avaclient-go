@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RebConversionConvertToAva**](RebConversionApi.md#RebConversionConvertToAva) | **Post** /conversion/reb/ava | Converts REB files to Dangl.AVA projects
 [**RebConversionConvertToExcel**](RebConversionApi.md#RebConversionConvertToExcel) | **Post** /conversion/reb/excel | Converts REB files to Excel
+[**RebConversionConvertToFlatAva**](RebConversionApi.md#RebConversionConvertToFlatAva) | **Post** /conversion/reb/flat-ava | Converts REB files to Dangl.AVA projects
 [**RebConversionConvertToGaeb**](RebConversionApi.md#RebConversionConvertToGaeb) | **Post** /conversion/reb/gaeb | Converts REB files to GAEB files
 [**RebConversionConvertToOenorm**](RebConversionApi.md#RebConversionConvertToOenorm) | **Post** /conversion/reb/oenorm | Converts REB files to Oenorm
 
@@ -145,6 +146,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RebConversionConvertToFlatAva
+
+> FlatAvaProject RebConversionConvertToFlatAva(ctx).RebFile(rebFile).Execute()
+
+Converts REB files to Dangl.AVA projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    rebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RebConversionApi.RebConversionConvertToFlatAva(context.Background()).RebFile(rebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RebConversionApi.RebConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RebConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `RebConversionApi.RebConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRebConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rebFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
