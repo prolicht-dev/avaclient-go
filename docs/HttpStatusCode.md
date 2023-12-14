@@ -31,13 +31,13 @@
 
 * `IM_USED` (value: `"IMUsed"`)
 
-* `AMBIGUOUS` (value: `"Ambiguous"`)
+* `MULTIPLE_CHOICES` (value: `"MultipleChoices"`)
 
-* `MOVED` (value: `"Moved"`)
+* `MOVED_PERMANENTLY` (value: `"MovedPermanently"`)
 
-* `REDIRECT` (value: `"Redirect"`)
+* `FOUND` (value: `"Found"`)
 
-* `REDIRECT_METHOD` (value: `"RedirectMethod"`)
+* `SEE_OTHER` (value: `"SeeOther"`)
 
 * `NOT_MODIFIED` (value: `"NotModified"`)
 
@@ -45,7 +45,7 @@
 
 * `UNUSED` (value: `"Unused"`)
 
-* `TEMPORARY_REDIRECT` (value: `"TemporaryRedirect"`)
+* `REDIRECT_KEEP_VERB` (value: `"RedirectKeepVerb"`)
 
 * `PERMANENT_REDIRECT` (value: `"PermanentRedirect"`)
 

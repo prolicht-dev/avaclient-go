@@ -4,6 +4,7 @@ All URIs are relative to *https://avacloud-api.dangl-it.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DanglIdentityGetUserInfo**](DanglIdentityApi.md#DanglIdentityGetUserInfo) | **Get** /identity/user-info | 
 [**DanglIdentityLoginAndReturnToken**](DanglIdentityApi.md#DanglIdentityLoginAndReturnToken) | **Post** /identity/token-login | 
 [**DanglIdentityLoginWithCookie**](DanglIdentityApi.md#DanglIdentityLoginWithCookie) | **Post** /identity/login | 
 [**DanglIdentityRefreshToken**](DanglIdentityApi.md#DanglIdentityRefreshToken) | **Post** /identity/token-refresh | 
@@ -11,6 +12,65 @@ Method | HTTP request | Description
 [**DanglIdentityRequestPasswordReset**](DanglIdentityApi.md#DanglIdentityRequestPasswordReset) | **Post** /identity/password-forgotten | 
 [**DanglIdentitySignOutWithSignInManager**](DanglIdentityApi.md#DanglIdentitySignOutWithSignInManager) | **Delete** /identity/login | 
 
+
+
+## DanglIdentityGetUserInfo
+
+> UserInfoGet DanglIdentityGetUserInfo(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DanglIdentityApi.DanglIdentityGetUserInfo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DanglIdentityApi.DanglIdentityGetUserInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DanglIdentityGetUserInfo`: UserInfoGet
+    fmt.Fprintf(os.Stdout, "Response from `DanglIdentityApi.DanglIdentityGetUserInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDanglIdentityGetUserInfoRequest struct via the builder pattern
+
+
+### Return type
+
+[**UserInfoGet**](UserInfoGet.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DanglIdentityLoginAndReturnToken

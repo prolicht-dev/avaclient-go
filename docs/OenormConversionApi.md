@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**OenormConversionConvertToAva**](OenormConversionApi.md#OenormConversionConvertToAva) | **Post** /conversion/oenorm/ava | Converts ÖNorm files to Dangl.AVA projects
 [**OenormConversionConvertToExcel**](OenormConversionApi.md#OenormConversionConvertToExcel) | **Post** /conversion/oenorm/excel | Converts ÖNorm files to Excel
+[**OenormConversionConvertToFlatAva**](OenormConversionApi.md#OenormConversionConvertToFlatAva) | **Post** /conversion/oenorm/flat-ava | Converts ÖNorm files to Dangl.AVA projects
 [**OenormConversionConvertToGaeb**](OenormConversionApi.md#OenormConversionConvertToGaeb) | **Post** /conversion/oenorm/gaeb | Converts ÖNorm files to GAEB files.
 [**OenormConversionConvertToOenorm**](OenormConversionApi.md#OenormConversionConvertToOenorm) | **Post** /conversion/oenorm/oenorm | Converts ÖNorm files to Oenorm files.
 
@@ -145,6 +146,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OenormConversionConvertToFlatAva
+
+> FlatAvaProject OenormConversionConvertToFlatAva(ctx).OenormFile(oenormFile).Execute()
+
+Converts ÖNorm files to Dangl.AVA projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToFlatAva(context.Background()).OenormFile(oenormFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OenormConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `OenormConversionApi.OenormConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOenormConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oenormFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

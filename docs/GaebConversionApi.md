@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GaebConversionConvertToAva**](GaebConversionApi.md#GaebConversionConvertToAva) | **Post** /conversion/gaeb/ava | Converts GAEB files to Dangl.AVA projects
 [**GaebConversionConvertToExcel**](GaebConversionApi.md#GaebConversionConvertToExcel) | **Post** /conversion/gaeb/excel | Converts GAEB files to Excel
+[**GaebConversionConvertToFlatAva**](GaebConversionApi.md#GaebConversionConvertToFlatAva) | **Post** /conversion/gaeb/flat-ava | Converts GAEB files to Dangl.AVA projects
 [**GaebConversionConvertToGaeb**](GaebConversionApi.md#GaebConversionConvertToGaeb) | **Post** /conversion/gaeb/gaeb | Converts GAEB files to GAEB files. Used for example when transforming or repairing GAEB files.
 [**GaebConversionConvertToOenorm**](GaebConversionApi.md#GaebConversionConvertToOenorm) | **Post** /conversion/gaeb/oenorm | Converts GAEB files to Oenorm files
 
@@ -165,6 +166,80 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: multipart/form-data
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GaebConversionConvertToFlatAva
+
+> FlatAvaProject GaebConversionConvertToFlatAva(ctx).SupportSkippedItemNumberLevelsInPositions(supportSkippedItemNumberLevelsInPositions).OutputHtmlAsXml(outputHtmlAsXml).KeepEmptyHtmlText(keepEmptyHtmlText).AllowUpperCaseItemNumbers(allowUpperCaseItemNumbers).AllowLumpSumItemsWithDifferingQuantities(allowLumpSumItemsWithDifferingQuantities).GaebFile(gaebFile).Execute()
+
+Converts GAEB files to Dangl.AVA projects
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    supportSkippedItemNumberLevelsInPositions := true // bool | Defaults to 'false'. This controls if, when deserializing GAEB files, skipped levels in position item numbers should be supported. For example, if an ItemNumberSchema defines three levels - two group levels and one position level - but the ItemNumber of the position is just '01.02', then it will be displayed as '01.__.02' if this is set to true. (optional)
+    outputHtmlAsXml := true // bool | Defaults to 'false'. If this is enabled, then Html text will be output as XML in the output. This means that e.g. void Html tags will always be output with their closing tag, e.g. it will produce '<br />' instead of '<br>'. (optional)
+    keepEmptyHtmlText := true // bool | Defaults to 'false'. If this is enabled, then Html text that is empty will be kept in the output. Otherwise, Html text without any plain text will be removed. This is useful for example if you want to keep texts that only consist of empty paragraphs in the output. (optional)
+    allowUpperCaseItemNumbers := true // bool | Defaults to 'false'. If this is enabled, then the ItemNumber of positions will be in uppercase format if the source file has them. By default, all item numbers will be converted to lowercase, but this option will enable the option to support uppercase item numbers as well. (optional)
+    allowLumpSumItemsWithDifferingQuantities := true // bool | Defaults to 'false'. By default, the GAEB standard requires lump sum items ('Pauschalpositionen' in German) to have a quantity of exactly 1. AVACloud does enforce this convention, but if you set this property to 'true', then differing quantities will be kept during the import. (optional)
+    gaebFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.GaebConversionApi.GaebConversionConvertToFlatAva(context.Background()).SupportSkippedItemNumberLevelsInPositions(supportSkippedItemNumberLevelsInPositions).OutputHtmlAsXml(outputHtmlAsXml).KeepEmptyHtmlText(keepEmptyHtmlText).AllowUpperCaseItemNumbers(allowUpperCaseItemNumbers).AllowLumpSumItemsWithDifferingQuantities(allowLumpSumItemsWithDifferingQuantities).GaebFile(gaebFile).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `GaebConversionApi.GaebConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GaebConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `GaebConversionApi.GaebConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGaebConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **supportSkippedItemNumberLevelsInPositions** | **bool** | Defaults to &#39;false&#39;. This controls if, when deserializing GAEB files, skipped levels in position item numbers should be supported. For example, if an ItemNumberSchema defines three levels - two group levels and one position level - but the ItemNumber of the position is just &#39;01.02&#39;, then it will be displayed as &#39;01.__.02&#39; if this is set to true. | 
+ **outputHtmlAsXml** | **bool** | Defaults to &#39;false&#39;. If this is enabled, then Html text will be output as XML in the output. This means that e.g. void Html tags will always be output with their closing tag, e.g. it will produce &#39;&lt;br /&gt;&#39; instead of &#39;&lt;br&gt;&#39;. | 
+ **keepEmptyHtmlText** | **bool** | Defaults to &#39;false&#39;. If this is enabled, then Html text that is empty will be kept in the output. Otherwise, Html text without any plain text will be removed. This is useful for example if you want to keep texts that only consist of empty paragraphs in the output. | 
+ **allowUpperCaseItemNumbers** | **bool** | Defaults to &#39;false&#39;. If this is enabled, then the ItemNumber of positions will be in uppercase format if the source file has them. By default, all item numbers will be converted to lowercase, but this option will enable the option to support uppercase item numbers as well. | 
+ **allowLumpSumItemsWithDifferingQuantities** | **bool** | Defaults to &#39;false&#39;. By default, the GAEB standard requires lump sum items (&#39;Pauschalpositionen&#39; in German) to have a quantity of exactly 1. AVACloud does enforce this convention, but if you set this property to &#39;true&#39;, then differing quantities will be kept during the import. | 
+ **gaebFile** | ***os.File** | The input file | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

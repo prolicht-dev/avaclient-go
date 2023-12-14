@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AvaConversionConvertToAva**](AvaConversionApi.md#AvaConversionConvertToAva) | **Post** /conversion/ava/ava | Converts Dangl.AVA projects to Dangl.AVA. This is useful when you want to generate the calculated properties.
 [**AvaConversionConvertToDatanorm**](AvaConversionApi.md#AvaConversionConvertToDatanorm) | **Post** /conversion/ava/datanorm | Converts Dangl.AVA projects to Datanorm
 [**AvaConversionConvertToExcel**](AvaConversionApi.md#AvaConversionConvertToExcel) | **Post** /conversion/ava/excel | Converts Dangl.AVA projects to Excel
+[**AvaConversionConvertToFlatAva**](AvaConversionApi.md#AvaConversionConvertToFlatAva) | **Post** /conversion/ava/flat-ava | Converts Dangl.AVA projects to Dangl.AVA. This is useful when you want to generate the calculated properties.
 [**AvaConversionConvertToGaeb**](AvaConversionApi.md#AvaConversionConvertToGaeb) | **Post** /conversion/ava/gaeb | Converts Dangl.AVA projects to GAEB
 [**AvaConversionConvertToIdsConnect**](AvaConversionApi.md#AvaConversionConvertToIdsConnect) | **Post** /conversion/ava/ids-connect | Converts Dangl.AVA projects to IDS Connect files
 [**AvaConversionConvertToOenorm**](AvaConversionApi.md#AvaConversionConvertToOenorm) | **Post** /conversion/ava/oenorm | Converts Dangl.AVA projects to Oenorm
@@ -222,6 +223,72 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
 - **Accept**: text/plain, application/json, text/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AvaConversionConvertToFlatAva
+
+> FlatAvaProject AvaConversionConvertToFlatAva(ctx).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).Execute()
+
+Converts Dangl.AVA projects to Dangl.AVA. This is useful when you want to generate the calculated properties.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/prolicht-dev/avaclient-go"
+)
+
+func main() {
+    avaProject := *openapiclient.NewProjectDto("Id_example", int32(123), false, openapiclient.PriceRoundingModeDto("Normal")) // ProjectDto | The Dangl.AVA project
+    tryAutoGenerateItemNumbersAndSchema := true // bool | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AvaConversionApi.AvaConversionConvertToFlatAva(context.Background()).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AvaConversionApi.AvaConversionConvertToFlatAva``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AvaConversionConvertToFlatAva`: FlatAvaProject
+    fmt.Fprintf(os.Stdout, "Response from `AvaConversionApi.AvaConversionConvertToFlatAva`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAvaConversionConvertToFlatAvaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **avaProject** | [**ProjectDto**](ProjectDto.md) | The Dangl.AVA project | 
+ **tryAutoGenerateItemNumbersAndSchema** | **bool** | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. | 
+
+### Return type
+
+[**FlatAvaProject**](FlatAvaProject.md)
+
+### Authorization
+
+[Dangl.Identity](../README.md#Dangl.Identity)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
