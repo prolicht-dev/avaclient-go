@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## AvaConversionConvertToReb
 
-> *os.File AvaConversionConvertToReb(ctx).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).DestinationRebType(destinationRebType).Execute()
+> *os.File AvaConversionConvertToReb(ctx).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).DestinationRebType(destinationRebType).LastRowAddress(lastRowAddress).Execute()
 
 Converts Dangl.AVA projects to REB
 
@@ -539,10 +539,11 @@ func main() {
     avaProject := *openapiclient.NewProjectDto("Id_example", int32(123), false, openapiclient.PriceRoundingModeDto("Normal")) // ProjectDto | The Dangl.AVA project
     tryAutoGenerateItemNumbersAndSchema := true // bool | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. (optional)
     destinationRebType := "destinationRebType_example" // string | Defaults to D11 (optional)
+    lastRowAddress := "lastRowAddress_example" // string | If this is present, the export to REB will be started from the next available row address after the given one. This must be a valid 6 character address, e.g. \"1234A0\" (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AvaConversionApi.AvaConversionConvertToReb(context.Background()).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).DestinationRebType(destinationRebType).Execute()
+    resp, r, err := apiClient.AvaConversionApi.AvaConversionConvertToReb(context.Background()).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).DestinationRebType(destinationRebType).LastRowAddress(lastRowAddress).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AvaConversionApi.AvaConversionConvertToReb``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -566,6 +567,7 @@ Name | Type | Description  | Notes
  **avaProject** | [**ProjectDto**](ProjectDto.md) | The Dangl.AVA project | 
  **tryAutoGenerateItemNumbersAndSchema** | **bool** | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. | 
  **destinationRebType** | **string** | Defaults to D11 | 
+ **lastRowAddress** | **string** | If this is present, the export to REB will be started from the next available row address after the given one. This must be a valid 6 character address, e.g. \&quot;1234A0\&quot; | 
 
 ### Return type
 

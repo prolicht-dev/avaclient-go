@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **CreditorOrDebtorIdentifier** | Pointer to **string** | Depending on which party this class represents, it might have either a &#39;creditor&#39; or &#39;debtor&#39; number. This is often used in internal accounting systems. | [optional] 
 **GlobalLocationNumber** | Pointer to **string** | The Global Location Number (GLN) is issued by GS1 and is intended to be a unique identifier for the physical address of a party, e.g. a business office. | [optional] 
 **BankingInformation** | Pointer to [**[]BankingInformationDto**](BankingInformationDto.md) | This list contains information about bank accounts associated with this PartyInformation. It&#39;s typically used for buyers and bidders. | [optional] 
+**RegistrationNumber** | Pointer to **string** | This can be used to specify a registration number for this party, e.g. a company registration number. It is usually used in GAEB XML commerce exchanges for bidders to supply their WEEE registration number, which is used to identify them as a registered WEEE company. | [optional] 
 
 ## Methods
 
@@ -507,6 +508,31 @@ SetBankingInformation sets BankingInformation field to given value.
 `func (o *PartyInformationDto) HasBankingInformation() bool`
 
 HasBankingInformation returns a boolean if a field has been set.
+
+### GetRegistrationNumber
+
+`func (o *PartyInformationDto) GetRegistrationNumber() string`
+
+GetRegistrationNumber returns the RegistrationNumber field if non-nil, zero value otherwise.
+
+### GetRegistrationNumberOk
+
+`func (o *PartyInformationDto) GetRegistrationNumberOk() (*string, bool)`
+
+GetRegistrationNumberOk returns a tuple with the RegistrationNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationNumber
+
+`func (o *PartyInformationDto) SetRegistrationNumber(v string)`
+
+SetRegistrationNumber sets RegistrationNumber field to given value.
+
+### HasRegistrationNumber
+
+`func (o *PartyInformationDto) HasRegistrationNumber() bool`
+
+HasRegistrationNumber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
