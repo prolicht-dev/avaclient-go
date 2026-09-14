@@ -13,12 +13,15 @@ Name | Type | Description | Notes
 **SkippedTiersFiller** | Pointer to **string** | This string is used only when the property SkipNonExistingLevelsInPositionItemNumbers in this ItemNumberSchema is also set to true. It defaults to DEFAULT_SKIPPED_TIERS_FILLER, but can be set to any string with a lenght of one. Null values or values with a longer length will lead to this property reverting back to the default value. This is used to fill skipped tiers in item numbers where a position is placed in a higher hierarchy level than what would be defined in the Tiers. For example, it could produce an item number like &#39;01.__.02&#39;, which would indicate a skipped second level. This should be using different values than Filler and Separator, since that could cause ambiguities in the code that generates the actual item numbers. No attempt is done by the code to recover from such ambiguous configurations. | [optional] 
 **SchemaIsCorrectlyDefined** | **bool** | This is a read-only property that indicates if this schema has a valid structure. It internally just returns the result from IsCorrectlyDefined. This will return if the ItemNumberSchema is correctly defined. For it to be correctly defined, the following conditions must be true: There may only be one lot group, if there is one, it must be at the top. Following lot levels, there may be at least one group level. After the group levels, there must be one position level. After the position level, there may be one index level. If no tiers are defined at all, this will also return false. | [readonly] 
 **AllowUpperCaseLettering** | **bool** | Defaults to false. If this is disabled, all letters in the ItemNumber string representations will be transformed to their lowercase representation. | 
+**DisableLeftPaddingTiersWithFiller** | **bool** | If this is set to true, single identifiers in an item number will not be left padded to fill the length of the tier. This is useful for allowing custom formats in item numbers, without following the GAEB standard. Defaults to false. | 
+**DisableItemNumberIdentifierTransformations** | **bool** | If this is enabled, then item numbers will not be transformed, except padded. This makes it possible to represent item numbers as-is from e.g. a GAEB file, and also mixing padded and non-padded segments in an item number. This is not recommonded to use by default, since it will lead to inconsistent item numbers in the project. | 
+**DisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers** | **bool** | This property is used in combination with DisableItemNumberIdentifierTransformations. If this is enabled, then the transformation of item numbers is only disabled for alphanumeric tiers. This means that numeric tiers will still be padded with the filler character, but alphanumeric tiers will not be transformed | 
 
 ## Methods
 
 ### NewItemNumberSchemaDto
 
-`func NewItemNumberSchemaDto(totalLength int32, skipNonExistingLevelsInPositionItemNumbers bool, schemaIsCorrectlyDefined bool, allowUpperCaseLettering bool, ) *ItemNumberSchemaDto`
+`func NewItemNumberSchemaDto(totalLength int32, skipNonExistingLevelsInPositionItemNumbers bool, schemaIsCorrectlyDefined bool, allowUpperCaseLettering bool, disableLeftPaddingTiersWithFiller bool, disableItemNumberIdentifierTransformations bool, disableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers bool, ) *ItemNumberSchemaDto`
 
 NewItemNumberSchemaDto instantiates a new ItemNumberSchemaDto object
 This constructor will assign default values to properties that have it defined,
@@ -236,6 +239,66 @@ and a boolean to check if the value has been set.
 `func (o *ItemNumberSchemaDto) SetAllowUpperCaseLettering(v bool)`
 
 SetAllowUpperCaseLettering sets AllowUpperCaseLettering field to given value.
+
+
+### GetDisableLeftPaddingTiersWithFiller
+
+`func (o *ItemNumberSchemaDto) GetDisableLeftPaddingTiersWithFiller() bool`
+
+GetDisableLeftPaddingTiersWithFiller returns the DisableLeftPaddingTiersWithFiller field if non-nil, zero value otherwise.
+
+### GetDisableLeftPaddingTiersWithFillerOk
+
+`func (o *ItemNumberSchemaDto) GetDisableLeftPaddingTiersWithFillerOk() (*bool, bool)`
+
+GetDisableLeftPaddingTiersWithFillerOk returns a tuple with the DisableLeftPaddingTiersWithFiller field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableLeftPaddingTiersWithFiller
+
+`func (o *ItemNumberSchemaDto) SetDisableLeftPaddingTiersWithFiller(v bool)`
+
+SetDisableLeftPaddingTiersWithFiller sets DisableLeftPaddingTiersWithFiller field to given value.
+
+
+### GetDisableItemNumberIdentifierTransformations
+
+`func (o *ItemNumberSchemaDto) GetDisableItemNumberIdentifierTransformations() bool`
+
+GetDisableItemNumberIdentifierTransformations returns the DisableItemNumberIdentifierTransformations field if non-nil, zero value otherwise.
+
+### GetDisableItemNumberIdentifierTransformationsOk
+
+`func (o *ItemNumberSchemaDto) GetDisableItemNumberIdentifierTransformationsOk() (*bool, bool)`
+
+GetDisableItemNumberIdentifierTransformationsOk returns a tuple with the DisableItemNumberIdentifierTransformations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableItemNumberIdentifierTransformations
+
+`func (o *ItemNumberSchemaDto) SetDisableItemNumberIdentifierTransformations(v bool)`
+
+SetDisableItemNumberIdentifierTransformations sets DisableItemNumberIdentifierTransformations field to given value.
+
+
+### GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers
+
+`func (o *ItemNumberSchemaDto) GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers() bool`
+
+GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers returns the DisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers field if non-nil, zero value otherwise.
+
+### GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiersOk
+
+`func (o *ItemNumberSchemaDto) GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiersOk() (*bool, bool)`
+
+GetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiersOk returns a tuple with the DisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers
+
+`func (o *ItemNumberSchemaDto) SetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers(v bool)`
+
+SetDisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers sets DisableItemNumberIdentifierTransformationsOnlyForAlphanumericTiers field to given value.
 
 
 

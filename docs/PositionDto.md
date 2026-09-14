@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **SubDescriptions** | Pointer to [**[]SubDescriptionDto**](SubDescriptionDto.md) | Further structuring of this Position. | [optional] 
 **ComissionStatus** | [**ComissionStatusDto**](ComissionStatusDto.md) |  | 
 **ComplementedBy** | Pointer to **[]string** | A list of positions that complement this Position. The positions are referenced by their GUIDs. It might be used together with ComplementedByQuantities in case that only a given quantity is complemented by positions. | [optional] 
+**SustainabilityIndicators** | Pointer to [**[]PositionSustainabilityIndicatorDto**](PositionSustainabilityIndicatorDto.md) | This list contains information about sustainability indicators or environmental impact for this position. | [optional] 
 **Complemented** | **bool** | Will indicate if this Position is complemented in this ServiceSpecification by other Positions. It can not be set to false when there are entries in the ComplementedBy property. | 
 **AmountToBeEnteredByBidder** | **bool** | Indicates that the amount for this Position is to be set by the bidder. | 
 **PriceCompositionRequired** | **bool** | Indicates if the bidder demands for prices to be broken up into their price components. | 
@@ -34,7 +35,8 @@ Name | Type | Description | Notes
 **PriceType** | [**PriceTypeDto**](PriceTypeDto.md) |  | 
 **ServiceType** | [**ServiceTypeDto**](ServiceTypeDto.md) |  | 
 **ProductData** | Pointer to [**ProductDataDto**](ProductDataDto.md) |  | [optional] 
-**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. | [optional] 
+**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. Please note that by default, this property takes precedence over the &#x60;HtmlShortText&#x60; property. If you want to convert from DTO objects, and you want to work with the &#x60;HtmlShortText&#x60; property, you need to set this property to null. | [optional] 
+**HtmlShortText** | Pointer to **string** | This contains the Html representation of the Shorttext. When the ShortText is set, this property will be set to contain the plain text representation of the Html text and vice versa. In practice, it&#39;s recommended to always use the plain text representations for short texts. This property is used to store the short text in HTML format. If you want to convert from DTO objects, and you want to use this property, then you need to ensure that &#x60;ShortText&#x60; is set to null, otherwise the plain text takes precedence over the HTML text. | [optional] 
 **LongText** | Pointer to **string** | Detailed description for this DescriptionBase element. When the HtmlLongText is set, this is automatically overwritten and filled with the appropriate plain text representation of the Html text. Vice versa, setting this property overrides the HtmlLongText. | [optional] 
 **HtmlLongText** | Pointer to **string** | This contains the Html representation of the Longtext. When the LongText is set, this is automatically overwritten and filled with the appropriate Html representation of the plaintext. Vice versa, setting this property overrides the LongText. GAEB 90 and GAEB 2000 exports do not support any image functionality. In GAEB XML, only images that use an embedded Base64 data uri are exported, regular url references are cleared before written out. | [optional] 
 **AdditionType** | [**AdditionTypeDto**](AdditionTypeDto.md) |  | 
@@ -60,12 +62,14 @@ Name | Type | Description | Notes
 **EstimatedQuantity** | Pointer to **float32** | This is an informational property, which directly holds a numerical value for an estimated quantity. It is not used for any price calculations. | [optional] 
 **PriceCatalogueData** | Pointer to [**PriceCatalogueDataDto**](PriceCatalogueDataDto.md) |  | [optional] 
 **IgnoreProjectCataloguePropagation** | **bool** | If this is set to true, the ProjectCatalogues property will not be propagated to child elements. This is useful in mapping scenarios, where you want to disable propagation for multiple changes, and only enable it once you have mapped all properties. | 
+**IsMainPosition** | **bool** | A main position means that this position is important and should be highlighted in the user interface. Important meaning that is is usually a bigger part of the total sum of the services, or it needs special attention in another way. | 
+**BaseCatalogueNumber** | Pointer to **string** | This is a string reference that&#39;s used by some description elements to reference a base or parent catalogue. For example, it&#39;s &#39;WICNo&#39; in GAEB. | [optional] 
 
 ## Methods
 
 ### NewPositionDto
 
-`func NewPositionDto(unitPrice float32, quantity float32, isComplementingPosition bool, comissionStatus ComissionStatusDto, complemented bool, amountToBeEnteredByBidder bool, priceCompositionRequired bool, useDifferentTaxRate bool, taxRate float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, deductedPrice float32, positionType PositionTypeDto, priceType PriceTypeDto, serviceType ServiceTypeDto, additionType AdditionTypeDto, isLumpSum bool, notOffered bool, hierarchyLevel int32, hasBidderCommentInHtmlLongText bool, gaebComplementingType PositionComplementingTypeDto, ignoreProjectCataloguePropagation bool, ) *PositionDto`
+`func NewPositionDto(unitPrice float32, quantity float32, isComplementingPosition bool, comissionStatus ComissionStatusDto, complemented bool, amountToBeEnteredByBidder bool, priceCompositionRequired bool, useDifferentTaxRate bool, taxRate float32, deductionFactor float32, totalPrice float32, totalPriceGross float32, totalPriceGrossDeducted float32, deductedPrice float32, positionType PositionTypeDto, priceType PriceTypeDto, serviceType ServiceTypeDto, additionType AdditionTypeDto, isLumpSum bool, notOffered bool, hierarchyLevel int32, hasBidderCommentInHtmlLongText bool, gaebComplementingType PositionComplementingTypeDto, ignoreProjectCataloguePropagation bool, isMainPosition bool, ) *PositionDto`
 
 NewPositionDto instantiates a new PositionDto object
 This constructor will assign default values to properties that have it defined,
@@ -435,6 +439,31 @@ SetComplementedBy sets ComplementedBy field to given value.
 
 HasComplementedBy returns a boolean if a field has been set.
 
+### GetSustainabilityIndicators
+
+`func (o *PositionDto) GetSustainabilityIndicators() []PositionSustainabilityIndicatorDto`
+
+GetSustainabilityIndicators returns the SustainabilityIndicators field if non-nil, zero value otherwise.
+
+### GetSustainabilityIndicatorsOk
+
+`func (o *PositionDto) GetSustainabilityIndicatorsOk() (*[]PositionSustainabilityIndicatorDto, bool)`
+
+GetSustainabilityIndicatorsOk returns a tuple with the SustainabilityIndicators field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSustainabilityIndicators
+
+`func (o *PositionDto) SetSustainabilityIndicators(v []PositionSustainabilityIndicatorDto)`
+
+SetSustainabilityIndicators sets SustainabilityIndicators field to given value.
+
+### HasSustainabilityIndicators
+
+`func (o *PositionDto) HasSustainabilityIndicators() bool`
+
+HasSustainabilityIndicators returns a boolean if a field has been set.
+
 ### GetComplemented
 
 `func (o *PositionDto) GetComplemented() bool`
@@ -769,6 +798,31 @@ SetShortText sets ShortText field to given value.
 `func (o *PositionDto) HasShortText() bool`
 
 HasShortText returns a boolean if a field has been set.
+
+### GetHtmlShortText
+
+`func (o *PositionDto) GetHtmlShortText() string`
+
+GetHtmlShortText returns the HtmlShortText field if non-nil, zero value otherwise.
+
+### GetHtmlShortTextOk
+
+`func (o *PositionDto) GetHtmlShortTextOk() (*string, bool)`
+
+GetHtmlShortTextOk returns a tuple with the HtmlShortText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHtmlShortText
+
+`func (o *PositionDto) SetHtmlShortText(v string)`
+
+SetHtmlShortText sets HtmlShortText field to given value.
+
+### HasHtmlShortText
+
+`func (o *PositionDto) HasHtmlShortText() bool`
+
+HasHtmlShortText returns a boolean if a field has been set.
 
 ### GetLongText
 
@@ -1359,6 +1413,51 @@ and a boolean to check if the value has been set.
 
 SetIgnoreProjectCataloguePropagation sets IgnoreProjectCataloguePropagation field to given value.
 
+
+### GetIsMainPosition
+
+`func (o *PositionDto) GetIsMainPosition() bool`
+
+GetIsMainPosition returns the IsMainPosition field if non-nil, zero value otherwise.
+
+### GetIsMainPositionOk
+
+`func (o *PositionDto) GetIsMainPositionOk() (*bool, bool)`
+
+GetIsMainPositionOk returns a tuple with the IsMainPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsMainPosition
+
+`func (o *PositionDto) SetIsMainPosition(v bool)`
+
+SetIsMainPosition sets IsMainPosition field to given value.
+
+
+### GetBaseCatalogueNumber
+
+`func (o *PositionDto) GetBaseCatalogueNumber() string`
+
+GetBaseCatalogueNumber returns the BaseCatalogueNumber field if non-nil, zero value otherwise.
+
+### GetBaseCatalogueNumberOk
+
+`func (o *PositionDto) GetBaseCatalogueNumberOk() (*string, bool)`
+
+GetBaseCatalogueNumberOk returns a tuple with the BaseCatalogueNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseCatalogueNumber
+
+`func (o *PositionDto) SetBaseCatalogueNumber(v string)`
+
+SetBaseCatalogueNumber sets BaseCatalogueNumber field to given value.
+
+### HasBaseCatalogueNumber
+
+`func (o *PositionDto) HasBaseCatalogueNumber() bool`
+
+HasBaseCatalogueNumber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

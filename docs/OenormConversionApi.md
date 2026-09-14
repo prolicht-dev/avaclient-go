@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## OenormConversionConvertToAva
 
-> ProjectDto OenormConversionConvertToAva(ctx).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).OenormFile(oenormFile).Execute()
+> ProjectDto OenormConversionConvertToAva(ctx).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
 
 Converts ÖNorm files to Dangl.AVA projects
 
@@ -33,11 +33,12 @@ import (
 func main() {
     removePlainTextLongTexts := true // bool | If set to true, plain text long texts will be removed from the output to reduce response sizes (optional)
     removeHtmlLongTexts := true // bool | If set to true, html long texts will be removed from the output to reduce response sizes (optional)
+    useOenormFileDeclarationForItemNumberSchema := true // bool | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty (optional)
     oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToAva(context.Background()).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).OenormFile(oenormFile).Execute()
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToAva(context.Background()).RemovePlainTextLongTexts(removePlainTextLongTexts).RemoveHtmlLongTexts(removeHtmlLongTexts).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToAva``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,6 +61,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **removePlainTextLongTexts** | **bool** | If set to true, plain text long texts will be removed from the output to reduce response sizes | 
  **removeHtmlLongTexts** | **bool** | If set to true, html long texts will be removed from the output to reduce response sizes | 
+ **useOenormFileDeclarationForItemNumberSchema** | **bool** | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty | 
  **oenormFile** | ***os.File** | The input file | 
 
 ### Return type
@@ -82,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## OenormConversionConvertToExcel
 
-> *os.File OenormConversionConvertToExcel(ctx).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).OenormFile(oenormFile).Execute()
+> *os.File OenormConversionConvertToExcel(ctx).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
 
 Converts ÖNorm files to Excel
 
@@ -101,13 +103,15 @@ import (
 func main() {
     writePrices := true // bool | Defaults to true (optional)
     writeLongTexts := true // bool | Defaults to true (optional)
-    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files (optional)
+    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: 'en' for English, 'de' for German, 'fr' for French, ' it' for Italian and ' es' for Spanish. If the culture is not supported, 'en' will be used. (optional)
     includeArticleNumbers := true // bool | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from 'position.commerceProperties.articleNumber' (optional)
+    lockAllCellsButPrices := true // bool | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. (optional)
+    useOenormFileDeclarationForItemNumberSchema := true // bool | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty (optional)
     oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToExcel(context.Background()).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).OenormFile(oenormFile).Execute()
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToExcel(context.Background()).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToExcel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +134,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **writePrices** | **bool** | Defaults to true | 
  **writeLongTexts** | **bool** | Defaults to true | 
- **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files | 
+ **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: &#39;en&#39; for English, &#39;de&#39; for German, &#39;fr&#39; for French, &#39; it&#39; for Italian and &#39; es&#39; for Spanish. If the culture is not supported, &#39;en&#39; will be used. | 
  **includeArticleNumbers** | **bool** | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from &#39;position.commerceProperties.articleNumber&#39; | 
+ **lockAllCellsButPrices** | **bool** | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. | 
+ **useOenormFileDeclarationForItemNumberSchema** | **bool** | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty | 
  **oenormFile** | ***os.File** | The input file | 
 
 ### Return type
@@ -154,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## OenormConversionConvertToFlatAva
 
-> FlatAvaProject OenormConversionConvertToFlatAva(ctx).OenormFile(oenormFile).Execute()
+> FlatAvaProject OenormConversionConvertToFlatAva(ctx).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
 
 Converts ÖNorm files to Dangl.AVA projects
 
@@ -171,11 +177,12 @@ import (
 )
 
 func main() {
+    useOenormFileDeclarationForItemNumberSchema := true // bool | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty (optional)
     oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToFlatAva(context.Background()).OenormFile(oenormFile).Execute()
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToFlatAva(context.Background()).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToFlatAva``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,6 +203,7 @@ Other parameters are passed through a pointer to a apiOenormConversionConvertToF
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **useOenormFileDeclarationForItemNumberSchema** | **bool** | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty | 
  **oenormFile** | ***os.File** | The input file | 
 
 ### Return type
@@ -218,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## OenormConversionConvertToGaeb
 
-> *os.File OenormConversionConvertToGaeb(ctx).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).OenormFile(oenormFile).Execute()
+> *os.File OenormConversionConvertToGaeb(ctx).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
 
 Converts ÖNorm files to GAEB files.
 
@@ -242,11 +250,12 @@ func main() {
     removeUnprintableCharactersFromTexts := true // bool | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. (optional)
     forceIncludeDescriptions := true // bool | If this is enabled, all description elements like texts and execution descriptions will be output to the result. This is mostly only applicable to GAEB exports to phase 84 - Offer, which does typically not include descriptions. (optional)
     treatNullItemNumberSchemaAsInvalid := true // bool | When exporting to GAEB, an item number schema is usually required. AVACloud will try to fix invalid item number schemas. With this setting, you can also tell AVACloud to treat a null value as invalid. Otherwise, null schemas will simply be ignored and not lead to any schema being generated. It is recommended to enable this option, but it is disabled by default for compatibility reasons. (optional)
+    useOenormFileDeclarationForItemNumberSchema := true // bool | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty (optional)
     oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToGaeb(context.Background()).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).OenormFile(oenormFile).Execute()
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToGaeb(context.Background()).DestinationGaebType(destinationGaebType).TargetExchangePhaseTransform(targetExchangePhaseTransform).EnforceStrictOfferPhaseLongTextOutput(enforceStrictOfferPhaseLongTextOutput).ExportQuantityDetermination(exportQuantityDetermination).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).ForceIncludeDescriptions(forceIncludeDescriptions).TreatNullItemNumberSchemaAsInvalid(treatNullItemNumberSchemaAsInvalid).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToGaeb``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,6 +283,7 @@ Name | Type | Description  | Notes
  **removeUnprintableCharactersFromTexts** | **bool** | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. | 
  **forceIncludeDescriptions** | **bool** | If this is enabled, all description elements like texts and execution descriptions will be output to the result. This is mostly only applicable to GAEB exports to phase 84 - Offer, which does typically not include descriptions. | 
  **treatNullItemNumberSchemaAsInvalid** | **bool** | When exporting to GAEB, an item number schema is usually required. AVACloud will try to fix invalid item number schemas. With this setting, you can also tell AVACloud to treat a null value as invalid. Otherwise, null schemas will simply be ignored and not lead to any schema being generated. It is recommended to enable this option, but it is disabled by default for compatibility reasons. | 
+ **useOenormFileDeclarationForItemNumberSchema** | **bool** | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty | 
  **oenormFile** | ***os.File** | The input file | 
 
 ### Return type
@@ -296,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## OenormConversionConvertToOenorm
 
-> *os.File OenormConversionConvertToOenorm(ctx).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).OenormFile(oenormFile).Execute()
+> *os.File OenormConversionConvertToOenorm(ctx).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
 
 Converts ÖNorm files to Oenorm files.
 
@@ -317,11 +327,12 @@ func main() {
     tryRepairProjectStructure := true // bool | Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target (optional)
     skipTryEnforceSchemaCompliantXmlOutput := true // bool | If this option is enabled, AVACloud will not attempt to force a schema-compliant Xml output for ÖNorm targets that are Xml based. By default, AVACloud will try to add required fields, even if no data is present, with sensible defaults. This behavior can be disabled with this option. (optional)
     removeUnprintableCharactersFromTexts := true // bool | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. (optional)
+    useOenormFileDeclarationForItemNumberSchema := true // bool | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty (optional)
     oenormFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToOenorm(context.Background()).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).OenormFile(oenormFile).Execute()
+    resp, r, err := apiClient.OenormConversionApi.OenormConversionConvertToOenorm(context.Background()).DestinationOenormType(destinationOenormType).TryRepairProjectStructure(tryRepairProjectStructure).SkipTryEnforceSchemaCompliantXmlOutput(skipTryEnforceSchemaCompliantXmlOutput).RemoveUnprintableCharactersFromTexts(removeUnprintableCharactersFromTexts).UseOenormFileDeclarationForItemNumberSchema(useOenormFileDeclarationForItemNumberSchema).OenormFile(oenormFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OenormConversionApi.OenormConversionConvertToOenorm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -346,6 +357,7 @@ Name | Type | Description  | Notes
  **tryRepairProjectStructure** | **bool** | Defaults to false. If this is enabled, the converter will try to ensure that the project structure can be mapped to Oenorm. It might introduce additional group levels to ensure a compatible target | 
  **skipTryEnforceSchemaCompliantXmlOutput** | **bool** | If this option is enabled, AVACloud will not attempt to force a schema-compliant Xml output for ÖNorm targets that are Xml based. By default, AVACloud will try to add required fields, even if no data is present, with sensible defaults. This behavior can be disabled with this option. | 
  **removeUnprintableCharactersFromTexts** | **bool** | If this is enabled, unprintable characters are removed from text elements. Otherwise, the conversion might fail in case some text content contains characters that are not allowed in XML output formats. Defaults to true. | 
+ **useOenormFileDeclarationForItemNumberSchema** | **bool** | If this is enabled, then the actual content structure inside the ÖNorm file is ignored. The item number schema of the target will be built based on the top level structure definition of the ÖNorm file, even if the file content itself might be different or empty | 
  **oenormFile** | ***os.File** | The input file | 
 
 ### Return type

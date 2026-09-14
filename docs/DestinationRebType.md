@@ -9,6 +9,8 @@
 
 * `X31_GAEB_XML_V33` (value: `"X31GaebXmlV33"`)
 
+* `X31_GAEB_XML_V34` (value: `"X31GaebXmlV34"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

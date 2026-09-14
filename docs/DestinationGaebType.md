@@ -23,6 +23,10 @@
 
 * `GAEB_XML_V3_3_2019_COMMERCE` (value: `"GaebXml_V3_3_2019_Commerce"`)
 
+* `GAEB_XML_V3_4` (value: `"GaebXml_V3_4"`)
+
+* `GAEB_XML_V3_4_COMMERCE` (value: `"GaebXml_V3_4_Commerce"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

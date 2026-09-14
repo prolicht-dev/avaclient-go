@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **PriceInformation** | Pointer to [**PriceInformationDto**](PriceInformationDto.md) |  | [optional] 
 **ProjectCatalogues** | Pointer to [**[]CatalogueDto**](CatalogueDto.md) | These are Catalogue that are used within this ElementContainerBase. Catalogue references are used to describe catalogues, or collections, that can be used to describe elements with commonly known properties. For example, QuantityAssignments use these to categorize themselves. | [optional] 
 **CatalogueReferences** | Pointer to [**[]CatalogueReferenceDto**](CatalogueReferenceDto.md) | Referenced catalogues for this ElementContainerBase. | [optional] 
+**SustainabilityCatalogues** | Pointer to [**[]SustainabilityCatalogueDto**](SustainabilityCatalogueDto.md) | This is a list of sustainability catalogues that are relevant for this ServiceSpecification. Sustainability catalogues are sources for environmental or sustainability data. | [optional] 
 **PlannedExecutionStart** | Pointer to **time.Time** | The date when the execution of the services is scheduled to start | [optional] 
 **PlannedExecutionEnd** | Pointer to **time.Time** | The date then the execution of the services is scheduled to be finished | [optional] 
 **ContractDate** | Pointer to **time.Time** | The date on which the contract has been awarded. This matches \&quot;Auftragsdatum\&quot; in GAEB | [optional] 
@@ -52,7 +53,7 @@ Name | Type | Description | Notes
 **WarrantyEnd** | Pointer to **time.Time** | The date on which the warranty period ends | [optional] 
 **ApprovalDate** | Pointer to **time.Time** | The date on which the services rendered by the bidder are scheduled to be approved by the buyer | [optional] 
 **TypeOfApproval** | Pointer to **string** | This should specify how the approval is performed by the buyer. This matches \&quot;AcceptType\&quot; in GAEB | [optional] 
-**AddendumNumber** | Pointer to **string** | This optional string property is shared by all IElements, and indicates if the element is part of an addendum, a &#39;Nachtrag&#39; in German. | [optional] 
+**AddendumNumber** | Pointer to **string** | This optional string property is shared by all IElement s, and indicates if the element is part of an addendum, a &#39;Nachtrag&#39; in German. | [optional] 
 **AddendumStatus** | Pointer to [**AddendumStatusDto**](AddendumStatusDto.md) |  | [optional] 
 **CommerceProperties** | Pointer to [**ServiceSpecificationCommercePropertiesDto**](ServiceSpecificationCommercePropertiesDto.md) |  | [optional] 
 
@@ -979,6 +980,31 @@ SetCatalogueReferences sets CatalogueReferences field to given value.
 `func (o *ServiceSpecificationDto) HasCatalogueReferences() bool`
 
 HasCatalogueReferences returns a boolean if a field has been set.
+
+### GetSustainabilityCatalogues
+
+`func (o *ServiceSpecificationDto) GetSustainabilityCatalogues() []SustainabilityCatalogueDto`
+
+GetSustainabilityCatalogues returns the SustainabilityCatalogues field if non-nil, zero value otherwise.
+
+### GetSustainabilityCataloguesOk
+
+`func (o *ServiceSpecificationDto) GetSustainabilityCataloguesOk() (*[]SustainabilityCatalogueDto, bool)`
+
+GetSustainabilityCataloguesOk returns a tuple with the SustainabilityCatalogues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSustainabilityCatalogues
+
+`func (o *ServiceSpecificationDto) SetSustainabilityCatalogues(v []SustainabilityCatalogueDto)`
+
+SetSustainabilityCatalogues sets SustainabilityCatalogues field to given value.
+
+### HasSustainabilityCatalogues
+
+`func (o *ServiceSpecificationDto) HasSustainabilityCatalogues() bool`
+
+HasSustainabilityCatalogues returns a boolean if a field has been set.
 
 ### GetPlannedExecutionStart
 

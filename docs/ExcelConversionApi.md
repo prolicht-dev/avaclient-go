@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## ExcelConversionConvertToExcel
 
-> *os.File ExcelConversionConvertToExcel(ctx).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).ExcelFile(excelFile).Execute()
+> *os.File ExcelConversionConvertToExcel(ctx).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).ExcelFile(excelFile).Execute()
 
 Converts Excel files to Excel files. Used, for example, when elements were added in excel to generate or modify a project. The Excel file can then be shared containing the full project with all formattings, formulas and styles applied.
 
@@ -107,13 +107,14 @@ func main() {
     rebuildItemNumberSchema := true // bool | When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. (optional)
     writePrices := true // bool | Defaults to true (optional)
     writeLongTexts := true // bool | Defaults to true (optional)
-    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files (optional)
+    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: 'en' for English, 'de' for German, 'fr' for French, ' it' for Italian and ' es' for Spanish. If the culture is not supported, 'en' will be used. (optional)
     includeArticleNumbers := true // bool | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from 'position.commerceProperties.articleNumber' (optional)
+    lockAllCellsButPrices := true // bool | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. (optional)
     excelFile := os.NewFile(1234, "some_file") // *os.File | The input file (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExcelConversionApi.ExcelConversionConvertToExcel(context.Background()).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).ExcelFile(excelFile).Execute()
+    resp, r, err := apiClient.ExcelConversionApi.ExcelConversionConvertToExcel(context.Background()).ReadNewElements(readNewElements).RebuildItemNumberSchema(rebuildItemNumberSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).ExcelFile(excelFile).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExcelConversionApi.ExcelConversionConvertToExcel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,8 +139,9 @@ Name | Type | Description  | Notes
  **rebuildItemNumberSchema** | **bool** | When importing new elements from Excel, sometimes the ItemNumberSchema in the file is not in compliance with the GAEB requirements. Enabling this option tries to repair the ItemNumberSchema. Defaults to false. | 
  **writePrices** | **bool** | Defaults to true | 
  **writeLongTexts** | **bool** | Defaults to true | 
- **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files | 
+ **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: &#39;en&#39; for English, &#39;de&#39; for German, &#39;fr&#39; for French, &#39; it&#39; for Italian and &#39; es&#39; for Spanish. If the culture is not supported, &#39;en&#39; will be used. | 
  **includeArticleNumbers** | **bool** | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from &#39;position.commerceProperties.articleNumber&#39; | 
+ **lockAllCellsButPrices** | **bool** | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. | 
  **excelFile** | ***os.File** | The input file | 
 
 ### Return type

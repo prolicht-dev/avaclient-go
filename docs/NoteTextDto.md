@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsOpeningText** | **bool** | If this is set to true, this text is meant to not be seen as part of the regular elements hierarchy but as a special opening text at the beginning of the project. For example, in GAEB XML, this would map to the GAEB.Award.AddText. Typically, such texts describe project-wide contractual definitions. If this is set to true, this NoteText should be placed at the top of the elements hierarchy directly in the ServiceSpecification.Elements group, otherwise it will likely not be treated correctly when exporting to GAEB. You can only set IsOpeningText or IsClosingText to true. | 
 **IsClosingText** | **bool** | If this is set to true, this text is meant to not be seen as part of the regular elements hierarchy but as a special closing text at the end of the project. For Example, in GAEB XML, this would map to the GAEB.AddText. Typically, such texts are used to describe project wide finishing descriptions. If this is set to true, this NoteText should be placed at the top of the elements hierarchy directly in the ServiceSpecification.Elements group, otherwise it will likely not be treated correctly when exporting to GAEB. You can only set IsOpeningText or IsClosingText to true. | 
-**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. | [optional] 
+**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. Please note that by default, this property takes precedence over the &#x60;HtmlShortText&#x60; property. If you want to convert from DTO objects, and you want to work with the &#x60;HtmlShortText&#x60; property, you need to set this property to null. | [optional] 
+**HtmlShortText** | Pointer to **string** | This contains the Html representation of the Shorttext. When the ShortText is set, this property will be set to contain the plain text representation of the Html text and vice versa. In practice, it&#39;s recommended to always use the plain text representations for short texts. This property is used to store the short text in HTML format. If you want to convert from DTO objects, and you want to use this property, then you need to ensure that &#x60;ShortText&#x60; is set to null, otherwise the plain text takes precedence over the HTML text. | [optional] 
 **AdditionType** | [**AdditionTypeDto**](AdditionTypeDto.md) |  | 
 **LongText** | Pointer to **string** | Detailed description for this DescriptionBase element. When the HtmlLongText is set, this is automatically overwritten and filled with the appropriate plain text representation of the Html text. Vice versa, setting this property overrides the HtmlLongText. | [optional] 
 **HtmlLongText** | Pointer to **string** | This contains the Html representation of the Longtext. When the LongText is set, this is automatically overwritten and filled with the appropriate Html representation of the plaintext. Vice versa, setting this property overrides the LongText. GAEB 90 and GAEB 2000 exports do not support any image functionality. In GAEB XML, only images that use an embedded Base64 data uri are exported, regular url references are cleared before written out. | [optional] 
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 **DescriptionId** | Pointer to **string** | This is an identifier specific for this description. Some exchange formats, like GAEB XML, use it to identify descriptions. It&#39;s different to an elements identifier in that it should only apply to the description component, meaning the text itself. | [optional] 
 **OenormNoteTextProperties** | Pointer to [**OenormNoteTextPropertiesDto**](OenormNoteTextPropertiesDto.md) |  | [optional] 
 **HasBidderCommentInHtmlLongText** | **bool** |  | [readonly] 
+**BaseCatalogueNumber** | Pointer to **string** | This is a string reference that&#39;s used by some description elements to reference a base or parent catalogue. For example, it&#39;s &#39;WICNo&#39; in GAEB. | [optional] 
 
 ## Methods
 
@@ -100,6 +102,31 @@ SetShortText sets ShortText field to given value.
 `func (o *NoteTextDto) HasShortText() bool`
 
 HasShortText returns a boolean if a field has been set.
+
+### GetHtmlShortText
+
+`func (o *NoteTextDto) GetHtmlShortText() string`
+
+GetHtmlShortText returns the HtmlShortText field if non-nil, zero value otherwise.
+
+### GetHtmlShortTextOk
+
+`func (o *NoteTextDto) GetHtmlShortTextOk() (*string, bool)`
+
+GetHtmlShortTextOk returns a tuple with the HtmlShortText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHtmlShortText
+
+`func (o *NoteTextDto) SetHtmlShortText(v string)`
+
+SetHtmlShortText sets HtmlShortText field to given value.
+
+### HasHtmlShortText
+
+`func (o *NoteTextDto) HasHtmlShortText() bool`
+
+HasHtmlShortText returns a boolean if a field has been set.
 
 ### GetAdditionType
 
@@ -315,6 +342,31 @@ and a boolean to check if the value has been set.
 
 SetHasBidderCommentInHtmlLongText sets HasBidderCommentInHtmlLongText field to given value.
 
+
+### GetBaseCatalogueNumber
+
+`func (o *NoteTextDto) GetBaseCatalogueNumber() string`
+
+GetBaseCatalogueNumber returns the BaseCatalogueNumber field if non-nil, zero value otherwise.
+
+### GetBaseCatalogueNumberOk
+
+`func (o *NoteTextDto) GetBaseCatalogueNumberOk() (*string, bool)`
+
+GetBaseCatalogueNumberOk returns a tuple with the BaseCatalogueNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseCatalogueNumber
+
+`func (o *NoteTextDto) SetBaseCatalogueNumber(v string)`
+
+SetBaseCatalogueNumber sets BaseCatalogueNumber field to given value.
+
+### HasBaseCatalogueNumber
+
+`func (o *NoteTextDto) HasBaseCatalogueNumber() bool`
+
+HasBaseCatalogueNumber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

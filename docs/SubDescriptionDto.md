@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **QuantityComponents** | Pointer to [**[]CalculationDto**](CalculationDto.md) | Holds quantity information for this sub description. Quantity is listening to changes here and is reporting the total sum of all quantity components. | [optional] 
 **AmountToBeEnteredByBidder** | **bool** | Indicates if the bidder is asked to specify an amount. | 
 **Identifier** | Pointer to **string** | Identifier for this SubDescription. | [optional] 
-**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. | [optional] 
+**ShortText** | Pointer to **string** | Short description for this DescriptionBase element. Please note that by default, this property takes precedence over the &#x60;HtmlShortText&#x60; property. If you want to convert from DTO objects, and you want to work with the &#x60;HtmlShortText&#x60; property, you need to set this property to null. | [optional] 
+**HtmlShortText** | Pointer to **string** | This contains the Html representation of the Shorttext. When the ShortText is set, this property will be set to contain the plain text representation of the Html text and vice versa. In practice, it&#39;s recommended to always use the plain text representations for short texts. This property is used to store the short text in HTML format. If you want to convert from DTO objects, and you want to use this property, then you need to ensure that &#x60;ShortText&#x60; is set to null, otherwise the plain text takes precedence over the HTML text. | [optional] 
 **LongText** | Pointer to **string** | Detailed description for this DescriptionBase element. When the HtmlLongText is set, this is automatically overwritten and filled with the appropriate plain text representation of the Html text. Vice versa, setting this property overrides the HtmlLongText. | [optional] 
 **UnitTag** | Pointer to **string** | If this is given, then the sub description has a different unit tag than the parent position. | [optional] 
 **HtmlLongText** | Pointer to **string** | This contains the Html representation of the Longtext. When the LongText is set, this is automatically overwritten and filled with the appropriate Html representation of the plaintext. Vice versa, setting this property overrides the LongText. GAEB 90 and GAEB 2000 exports do not support any image functionality. In GAEB XML, only images that use an embedded Base64 data uri are exported, regular url references are cleared before written out. | [optional] 
@@ -20,8 +21,7 @@ Name | Type | Description | Notes
 **ProjectCatalogues** | Pointer to [**[]CatalogueDto**](CatalogueDto.md) | These are Catalogues that are used within this Calculation. Catalogues are used to describe catalogues, or collections, that can be used to describe elements with commonly known properties. For example, QuantityAssignments use these to categorize themselves. They are propagate to all child elements, e.g. other containers and QuantityAssignments. In the context of a ServiceSpecification, all elements share the same instance of the collection. | [optional] 
 **DescriptionId** | Pointer to **string** | This is an identifier specific for this description. Some exchange formats, like GAEB XML, use it to identify descriptions. It&#39;s different to an elements identifier in that it should only apply to the description component, meaning the text itself. | [optional] 
 **HasBidderCommentInHtmlLongText** | **bool** |  | [readonly] 
-**ElementType** | Pointer to **string** |  | [optional] 
-**ElementTypeDiscriminator** | Pointer to **string** |  | [optional] 
+**BaseCatalogueNumber** | Pointer to **string** | This is a string reference that&#39;s used by some description elements to reference a base or parent catalogue. For example, it&#39;s &#39;WICNo&#39; in GAEB. | [optional] 
 
 ## Methods
 
@@ -201,6 +201,31 @@ SetShortText sets ShortText field to given value.
 `func (o *SubDescriptionDto) HasShortText() bool`
 
 HasShortText returns a boolean if a field has been set.
+
+### GetHtmlShortText
+
+`func (o *SubDescriptionDto) GetHtmlShortText() string`
+
+GetHtmlShortText returns the HtmlShortText field if non-nil, zero value otherwise.
+
+### GetHtmlShortTextOk
+
+`func (o *SubDescriptionDto) GetHtmlShortTextOk() (*string, bool)`
+
+GetHtmlShortTextOk returns a tuple with the HtmlShortText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHtmlShortText
+
+`func (o *SubDescriptionDto) SetHtmlShortText(v string)`
+
+SetHtmlShortText sets HtmlShortText field to given value.
+
+### HasHtmlShortText
+
+`func (o *SubDescriptionDto) HasHtmlShortText() bool`
+
+HasHtmlShortText returns a boolean if a field has been set.
 
 ### GetLongText
 
@@ -417,55 +442,30 @@ and a boolean to check if the value has been set.
 SetHasBidderCommentInHtmlLongText sets HasBidderCommentInHtmlLongText field to given value.
 
 
-### GetElementType
+### GetBaseCatalogueNumber
 
-`func (o *SubDescriptionDto) GetElementType() string`
+`func (o *SubDescriptionDto) GetBaseCatalogueNumber() string`
 
-GetElementType returns the ElementType field if non-nil, zero value otherwise.
+GetBaseCatalogueNumber returns the BaseCatalogueNumber field if non-nil, zero value otherwise.
 
-### GetElementTypeOk
+### GetBaseCatalogueNumberOk
 
-`func (o *SubDescriptionDto) GetElementTypeOk() (*string, bool)`
+`func (o *SubDescriptionDto) GetBaseCatalogueNumberOk() (*string, bool)`
 
-GetElementTypeOk returns a tuple with the ElementType field if it's non-nil, zero value otherwise
+GetBaseCatalogueNumberOk returns a tuple with the BaseCatalogueNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetElementType
+### SetBaseCatalogueNumber
 
-`func (o *SubDescriptionDto) SetElementType(v string)`
+`func (o *SubDescriptionDto) SetBaseCatalogueNumber(v string)`
 
-SetElementType sets ElementType field to given value.
+SetBaseCatalogueNumber sets BaseCatalogueNumber field to given value.
 
-### HasElementType
+### HasBaseCatalogueNumber
 
-`func (o *SubDescriptionDto) HasElementType() bool`
+`func (o *SubDescriptionDto) HasBaseCatalogueNumber() bool`
 
-HasElementType returns a boolean if a field has been set.
-
-### GetElementTypeDiscriminator
-
-`func (o *SubDescriptionDto) GetElementTypeDiscriminator() string`
-
-GetElementTypeDiscriminator returns the ElementTypeDiscriminator field if non-nil, zero value otherwise.
-
-### GetElementTypeDiscriminatorOk
-
-`func (o *SubDescriptionDto) GetElementTypeDiscriminatorOk() (*string, bool)`
-
-GetElementTypeDiscriminatorOk returns a tuple with the ElementTypeDiscriminator field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetElementTypeDiscriminator
-
-`func (o *SubDescriptionDto) SetElementTypeDiscriminator(v string)`
-
-SetElementTypeDiscriminator sets ElementTypeDiscriminator field to given value.
-
-### HasElementTypeDiscriminator
-
-`func (o *SubDescriptionDto) HasElementTypeDiscriminator() bool`
-
-HasElementTypeDiscriminator returns a boolean if a field has been set.
+HasBaseCatalogueNumber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

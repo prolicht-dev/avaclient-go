@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LineNumber** | **int32** | The line number on which the validation happened | 
 **LinePosition** | **int32** | The position in the line | 
+**InvoiceDataPointId** | Pointer to **string** | Official data point identifier for XRechnung values, e.g. &#x60;BT-1&#x60; Should be null for other data types, e.g. GAEB or ÖNorm | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetLinePosition sets LinePosition field to given value.
 
+
+### GetInvoiceDataPointId
+
+`func (o *XmlSchemaValidationCheckDetails) GetInvoiceDataPointId() string`
+
+GetInvoiceDataPointId returns the InvoiceDataPointId field if non-nil, zero value otherwise.
+
+### GetInvoiceDataPointIdOk
+
+`func (o *XmlSchemaValidationCheckDetails) GetInvoiceDataPointIdOk() (*string, bool)`
+
+GetInvoiceDataPointIdOk returns a tuple with the InvoiceDataPointId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvoiceDataPointId
+
+`func (o *XmlSchemaValidationCheckDetails) SetInvoiceDataPointId(v string)`
+
+SetInvoiceDataPointId sets InvoiceDataPointId field to given value.
+
+### HasInvoiceDataPointId
+
+`func (o *XmlSchemaValidationCheckDetails) HasInvoiceDataPointId() bool`
+
+HasInvoiceDataPointId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

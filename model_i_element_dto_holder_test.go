@@ -54,6 +54,7 @@ func TestMarshall(t *testing.T) {
           "ignoreProjectCataloguePropagation": false,
           "isComplementingPosition": false,
           "isLumpSum": false,
+          "isMainPosition": false,
           "notOffered": false,
           "positionType": "",
           "priceCompositionRequired": false,

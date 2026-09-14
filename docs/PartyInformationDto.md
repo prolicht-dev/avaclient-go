@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **GlobalLocationNumber** | Pointer to **string** | The Global Location Number (GLN) is issued by GS1 and is intended to be a unique identifier for the physical address of a party, e.g. a business office. | [optional] 
 **BankingInformation** | Pointer to [**[]BankingInformationDto**](BankingInformationDto.md) | This list contains information about bank accounts associated with this PartyInformation. It&#39;s typically used for buyers and bidders. | [optional] 
 **RegistrationNumber** | Pointer to **string** | This can be used to specify a registration number for this party, e.g. a company registration number. It is usually used in GAEB XML commerce exchanges for bidders to supply their WEEE registration number, which is used to identify them as a registered WEEE company. | [optional] 
+**TaxId** | Pointer to **string** | This can be used to specify a tax id for this party. It is different from the VatId and the RegistrationNumber. For example, in Germany this would be the \&quot;Steuernummer\&quot;. This is usually not mapped to any AVA exchanges, but it&#39;s used e.g. in the XRechnung electronic invoices. | [optional] 
 
 ## Methods
 
@@ -533,6 +534,31 @@ SetRegistrationNumber sets RegistrationNumber field to given value.
 `func (o *PartyInformationDto) HasRegistrationNumber() bool`
 
 HasRegistrationNumber returns a boolean if a field has been set.
+
+### GetTaxId
+
+`func (o *PartyInformationDto) GetTaxId() string`
+
+GetTaxId returns the TaxId field if non-nil, zero value otherwise.
+
+### GetTaxIdOk
+
+`func (o *PartyInformationDto) GetTaxIdOk() (*string, bool)`
+
+GetTaxIdOk returns a tuple with the TaxId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaxId
+
+`func (o *PartyInformationDto) SetTaxId(v string)`
+
+SetTaxId sets TaxId field to given value.
+
+### HasTaxId
+
+`func (o *PartyInformationDto) HasTaxId() bool`
+
+HasTaxId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

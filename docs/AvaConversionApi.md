@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## AvaConversionConvertToExcel
 
-> *os.File AvaConversionConvertToExcel(ctx).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).Execute()
+> *os.File AvaConversionConvertToExcel(ctx).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).Execute()
 
 Converts Dangl.AVA projects to Excel
 
@@ -178,12 +178,13 @@ func main() {
     tryAutoGenerateItemNumbersAndSchema := true // bool | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. (optional)
     writePrices := true // bool | Defaults to true (optional)
     writeLongTexts := true // bool | Defaults to true (optional)
-    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files (optional)
+    conversionCulture := "conversionCulture_example" // string | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: 'en' for English, 'de' for German, 'fr' for French, ' it' for Italian and ' es' for Spanish. If the culture is not supported, 'en' will be used. (optional)
     includeArticleNumbers := true // bool | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from 'position.commerceProperties.articleNumber' (optional)
+    lockAllCellsButPrices := true // bool | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AvaConversionApi.AvaConversionConvertToExcel(context.Background()).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).Execute()
+    resp, r, err := apiClient.AvaConversionApi.AvaConversionConvertToExcel(context.Background()).AvaProject(avaProject).TryAutoGenerateItemNumbersAndSchema(tryAutoGenerateItemNumbersAndSchema).WritePrices(writePrices).WriteLongTexts(writeLongTexts).ConversionCulture(conversionCulture).IncludeArticleNumbers(includeArticleNumbers).LockAllCellsButPrices(lockAllCellsButPrices).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AvaConversionApi.AvaConversionConvertToExcel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,8 +209,9 @@ Name | Type | Description  | Notes
  **tryAutoGenerateItemNumbersAndSchema** | **bool** | If this is set to true, AVACloud will try to generate item numbers and an item number schema automatically for the input project. The operation will not have any effect if either an item number schema is already present, or if any of the elements already has an item number. | 
  **writePrices** | **bool** | Defaults to true | 
  **writeLongTexts** | **bool** | Defaults to true | 
- **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files | 
+ **conversionCulture** | **string** | The culture that should be used for the conversion process, to have localized Excel files. The following conversion cultures are available: &#39;en&#39; for English, &#39;de&#39; for German, &#39;fr&#39; for French, &#39; it&#39; for Italian and &#39; es&#39; for Spanish. If the culture is not supported, &#39;en&#39; will be used. | 
  **includeArticleNumbers** | **bool** | If this is enabled, then a new column will be created in the overview worksheet that contains the article numbers for positions. Article numbers will be read from &#39;position.commerceProperties.articleNumber&#39; | 
+ **lockAllCellsButPrices** | **bool** | If this is enabled, then all cells except the unit price cells will be locked, so users can not accidentally modify other fields. | 
 
 ### Return type
 

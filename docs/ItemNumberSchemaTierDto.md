@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Length** | **int32** | The (maximum) length for this tier. Will not accept a length less than 1. Defaults to 1 if length less than one is specified. | 
 **Type** | [**ItemNumberTypeDto**](ItemNumberTypeDto.md) |  | 
+**Alignment** | Pointer to [**ItemNumberSchemaTierAlignmentDto**](ItemNumberSchemaTierAlignmentDto.md) |  | [optional] 
 **TierType** | [**ItemNumberSchemaTierTypeDto**](ItemNumberSchemaTierTypeDto.md) |  | 
 **IsLot** | **bool** | Indicates if this tier represents a lot. See the documentation for more information about lots. | [readonly] 
 **Increment** | **int32** | This value is the increment, or step size, that should be used for new item numbers. It defaults to DEFAULT_INCREMENT, but can be changed to any other positive number greater than zero. Invalid values make this be set to one &#39;1&#39; | 
@@ -69,6 +70,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetAlignment
+
+`func (o *ItemNumberSchemaTierDto) GetAlignment() ItemNumberSchemaTierAlignmentDto`
+
+GetAlignment returns the Alignment field if non-nil, zero value otherwise.
+
+### GetAlignmentOk
+
+`func (o *ItemNumberSchemaTierDto) GetAlignmentOk() (*ItemNumberSchemaTierAlignmentDto, bool)`
+
+GetAlignmentOk returns a tuple with the Alignment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlignment
+
+`func (o *ItemNumberSchemaTierDto) SetAlignment(v ItemNumberSchemaTierAlignmentDto)`
+
+SetAlignment sets Alignment field to given value.
+
+### HasAlignment
+
+`func (o *ItemNumberSchemaTierDto) HasAlignment() bool`
+
+HasAlignment returns a boolean if a field has been set.
 
 ### GetTierType
 

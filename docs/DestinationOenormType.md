@@ -17,6 +17,12 @@
 
 * `LB2021` (value: `"Lb2021"`)
 
+* `RE2009` (value: `"Re2009"`)
+
+* `RE2015` (value: `"Re2015"`)
+
+* `RE2021` (value: `"Re2021"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
